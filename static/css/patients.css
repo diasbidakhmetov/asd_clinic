@@ -1,0 +1,75 @@
+.patient-container{
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px 40px;
+    width: 900px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    height: 910px;
+}
+
+.list-title{
+    margin: 20px 0;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+
+form {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    
+  }
+  
+  input.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    flex: 1;
+    margin-bottom: 0;
+  }
+  
+  
+  
+  form button.btn {
+    white-space: nowrap;
+  }
+
+  .suggestions-box {
+    border-top: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  .suggestions-box:empty {
+    display: none;
+    border: none;
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .no-results, .error-message {
+    padding: 10px;
+    color: #888;
+    font-style: italic;
+  }
+  

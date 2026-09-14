@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load custom_filters%}
+
+{% load static%}
+
+{% block title %}
+   {{ title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/general_analysis.css'%}">
+{% endblock %}
+
+
+{% block content %}
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Мәзір</h2>
+      <ul>
+        <li><a href="{% url 'analytics:general_analysis' %}">Жалпы статистика</a></li>
+        <li><a href="{% url 'analytics:patients' %}">Қолданушылар</a></li>
+        {% for type in test_types%}
+          <li><a href="{% url 'analytics:test_types' type.id %}">{{type.name}} </a></li>
+        {% endfor %}
+      </ul>
+    </aside>
+    {% if code == 'general_analysis' %}
+      {% include 'analytics/general_analysis.html'%}
+    {% elif code == 'patients' %}
+      {% include 'analytics/patients.html'%}
+    {% elif code == 'standard_tests_analysis' %}
+      {% include 'analytics/standard_tests_analysis.html'%}
+    {% endif %}
+  </div>
+{% endblock %}

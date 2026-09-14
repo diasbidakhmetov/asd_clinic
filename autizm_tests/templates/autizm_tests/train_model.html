@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+    <script src="{% static 'js/WebGazer-master/www/webgazer.js' %}"></script>
+    <script src="{% static 'js/webgazer_script.js'%}"></script>
+</head>
+<body>
+    <script>
+        function autoSaveModel() {
+            Promise.all([
+                localforage.getItem("webgazerGlobalData"),
+                localforage.getItem("webgazerGlobalSettings")
+            ]).then(([data, settings]) => {
+                if (data && settings) {
+                    const model = { data, settings };
+                    fetch('/save_model/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ model: model })
+                    }).then(response => response.json())
+                    .then(data => console.log("Авто-сохранение:", data.message))
+                    .catch(error => console.error("Ошибка авто-сохранения:", error));
+                }
+            });
+        }
+
+        function startAutoSave(interval = 30) {
+            setInterval(autoSaveModel, interval * 1000);
+        }
+
+        window.onload = function () {
+            startAutoSave(30);
+        };
+    </script>
+</body>
+</html>

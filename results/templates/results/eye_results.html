@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class = "result-continer">
+        <div class = "result-head-info">
+            <table border="1" class = "head-table">
+                <tr>
+                    <td class = "category">Аты-Жөні</td>
+                    <td>{{user.last_name}} {{user.first_name}} {% if user.father_name %}{{user.father_name}}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td class = "category">Жасы</td>
+                    <td>{{results.age}}</td>
+                </tr>
+                <tr>
+                    <td class = "category">Тест түрі</td>
+                    <td>{{results.test_type}}</td>
+                </tr>
+                <tr>
+                    <td class = "category">Тест нәтижесі</td>
+                    <td>{{eye.0.description}}</td>
+                </tr>
+                <tr>
+                    <td class = "category">Өту күні</td>
+                    <td>{{results.date_taken|date:"d.m.Y H:i:s"}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class = "test-result-table-continer">   
+            <table border="1" class = "test-result-table">
+                <tr>
+                    <th class = "text-center">№</th>
+                    <th class = "text-center">Кескін</th>
+                    <th class = "text-center">Қызықты аймақтар</th>
+                    <th class = "text-center">Нейтралды аймақтар</th>
+                </tr>
+                {% for result, count in  combined_queryset  %}
+                    <tr>
+                        <td class = "text-center">{{ forloop.counter }}</td>
+                        <td class = "text-center"><img src="{{result.result_image.url}}" alt="{{ result.result_image }}" width="250"></td>
+                        <td class = "text-center">{% if count %}{{ count.social }}{% else %}-{% endif %}</td>
+                        <td class = "text-center">{% if count %}{{ count.neitral }}{% else %}-{% endif %}</td>
+                    </tr> 
+                {% endfor %}             
+            </table>
+        </div>
+
+        <div class="back-result-continer">
+            <a href="{% url 'users:all_results' %}">Артқа</a>
+        </div>
+    </div>
+{% endblock %}
+    

@@ -1,0 +1,23 @@
+<div class="profile-menu">
+    {% if user_id %}
+        <a href="{% url 'users:profile' user_id %}" id="user-data-link">Жеке деректер</a>
+        <a href="#" id="test-results-link">Тест нәтижелері</a>
+        <div class="sub-menu">
+            <a class = "sub-menu-link" href="{% url 'users:all_results' user_id %}">Барлығы</a>
+            {% for test in test_types %}
+                <a class = "sub-menu-link" href="{% url 'users:test_types' test.id user_id %}">{{ test.name }}</a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'users:test_card' user_id%}" id="test-results-link">Нәтижелер картасы</a>
+    {% else %}
+        <a href="{% url 'users:profile'%}" id="user-data-link">Жеке деректер</a>
+        <a href="#" id="test-results-link">Тест нәтижелері</a>
+        <div class="sub-menu">
+            <a class = "sub-menu-link" href="{% url 'users:all_results' %}">Барлығы</a>
+            {% for test in test_types %}
+                <a class = "sub-menu-link" href="{% url 'users:test_types' test.id %}">{{ test.name }}</a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'users:test_card'%}" id="test-results-link">Нәтижелер картасы</a>
+    {% endif %}
+</div>

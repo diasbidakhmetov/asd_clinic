@@ -1,0 +1,151 @@
+{% extends 'core/base.html' %}
+
+{% load static%}
+
+{% block title %}
+   {{ title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/casd.css'%}">
+  <style>
+    .sub-questions { margin-left: 20px; display: none; }
+    .question { margin-top: 15px; }
+    #result { font-size: 20px; font-weight: bold; margin-top: 30px; }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<form id="casdForm">
+{% for item in questions_json %}
+  <div class="question">
+    <label>
+      <input type="checkbox" class="main" data-sub="q{{ item.id }}">
+      {{ item.number }}) {{ item.name }}
+    </label>
+    {% if item.answers %}
+      <div class="sub-questions" id="q{{ item.id }}">
+        {% for answer in item.answers %}
+          <label><input type="checkbox" class="sub"> {{ answer.name }}</label><br>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endfor %}
+<button type="button" id="submitBtn">Тестті аяқтау</button>
+</form>
+
+
+<script>
+  function updateScore() {
+    const mainChecks = document.querySelectorAll('.main');
+    let score = 0;
+
+    mainChecks.forEach(main => {
+      const subId = main.dataset.sub;
+      const subBlock = subId ? document.getElementById(subId) : null;
+
+      if (subBlock) {
+        const subs = subBlock.querySelectorAll('input[type="checkbox"]');
+        const anySubChecked = Array.from(subs).some(sub => sub.checked);
+        if (main.checked || anySubChecked) score += 1;
+      } else {
+        if (main.checked) score += 1;
+      }
+    });
+
+    document.getElementById('result').textContent = 'Общий балл: ' + score;
+  }
+
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const subId = cb.dataset.sub;
+      if (subId) {
+        const block = document.getElementById(subId);
+        block.style.display = cb.checked ? 'block' : 'none';
+        if (!cb.checked) {
+          block.querySelectorAll('input').forEach(input => input.checked = false);
+        }
+      }
+      updateScore();
+    });
+  });
+
+  document.getElementById('submitBtn').addEventListener('click', () => {
+  const mainChecks = document.querySelectorAll('.main');
+  let score = 0;
+  const results = [];
+
+  mainChecks.forEach(main => {
+    const questionId = main.dataset.sub.replace('q', '');
+    const questionLabel = main.parentElement.textContent.trim();
+    const subBlock = document.getElementById('q' + questionId);
+
+    let answers = [];
+    let hasAnswer = false;
+
+    if (subBlock) {
+      const subs = subBlock.querySelectorAll('input[type="checkbox"]');
+      subs.forEach(sub => {
+        if (sub.checked) {
+          hasAnswer = true;
+          answers.push(sub.parentElement.textContent.trim());
+        }
+      });
+    }
+
+    if (main.checked || hasAnswer) {
+        score += 1;
+    }
+
+    results.push({
+        question_id: parseInt(questionId),
+        question: questionLabel,
+        selected: main.checked,
+        answers: answers
+    });
+  });
+
+  // Определим категорию
+  let diagnosis = '';
+  if (score >= 15) {
+    diagnosis = 'Аутизм белгілері бар';
+  } else if (score >= 11) {
+    diagnosis = 'Қауіптілік аймағы. Диагностиканы жалғастыру керек';
+  } else {
+    diagnosis = 'Аутизм белгілері анықталмады';
+  }
+
+
+    fetch('{% url "autizm_tests:casd_result_submit" %}', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}'
+    },
+    body: JSON.stringify({
+        score: score,
+        diagnosis: diagnosis,
+        results: results
+    })
+    })
+    .then(response => response.json())
+    .then(data => {
+    if (data.redirect_url) {
+        window.location.href = data.redirect_url;  // 🔁 вот тут делаем переход
+    } else {
+        alert("Результат успешно отправлен!");
+    }
+    })
+    .catch(error => {
+    console.error("Ошибка:", error);
+    alert("Ошибка при отправке.");
+    });
+});
+
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,258 @@
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/standard_test_analysis.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+<div class="standard-tests-container">
+  <h1>{{test_name}}</h1>
+  <!-- Подключаем jQuery и Select2 -->
+  <div class = "filter-container">
+    <form method="get" style="position: relative; max-width: 300px;">
+      <input type="text" id="userSearch" name="user_query" placeholder="Қолданушының аты-жөні" autocomplete="off" value="{{ user_query|default:'' }}" class="form-control">
+      <input type="hidden" name="iin" id="selectedIIN">
+      <div id="suggestions" class="suggestions-box"></div>
+      <button type="submit" class="btn btn-primary mt-2">Таңдау</button>
+    </form>
+
+    <form method="get">
+      <label for="gender">Жынысы:</label>
+      <select name="gender" id="gender" onchange="this.form.submit()">
+          <option value="">Барлығы</option>
+          <option value="1" {% if gender == '1' %}selected{% endif %}>Ер</option>
+          <option value="2" {% if gender == '2' %}selected{% endif %}>Әйел</option>
+      </select>
+      <input type="hidden" name="filter" value="{{ filter_type }}">
+    </form>
+  </div>
+
+  <p class="test-count-card">
+    Өтілген тесттер саны: {{ total_result }}
+  </p>
+
+  <div class = "testchart-container">
+    <canvas id="testsChart" width="400" height="200"></canvas>
+    <form method="get">
+      <label for="filter">Фильтр:</label>
+        <select name="filter" onchange="this.form.submit()">
+          <option value="day" {% if filter_type == "day" %}selected{% endif %}>Күн</option>
+          <option value="month" {% if filter_type == "month" %}selected{% endif %}>Ай</option>
+          <option value="year" {% if filter_type == "year" %}selected{% endif %}>Жыл</option>
+        </select>
+    </form>
+  </div>
+
+<h2 class="title-text">Жиі кездесетін нәтижелер</h2>
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Атауы</th>
+      <th>Саны</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in test_description %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.count }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if eye_count %}
+  <h2 class="title-text">Көздің орналасу аймағы</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Көрсеткіш</th>
+        <th>Мәні</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Нейтралды зона</td><td>{{ eye_count.total_neitral }}</td></tr>
+      <tr><td>2</td><td>Әлеуметтік зона</td><td>{{ eye_count.total_social }}</td></tr>
+      <tr><td>3</td><td>Нейтралды зона пайызы</td><td>{{ eye_count.percent_neitral }}%</td></tr>
+      <tr><td>4</td><td>Әлеуметтік зона пайызы</td><td>{{ eye_count.percent_social }}%</td></tr>
+    </tbody>
+  </table>
+{% endif %}
+
+{% if image_eye_zone %}
+  <h2 class="title-text">Eye Tracking суреттері</h2>
+    <div style="margin-bottom: 20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Сурет</th>
+            <th>Нейтралды зона</th>
+            <th>Әлеуметтік зона</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in image_eye_zone %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="/media/{{ item.image__image }}" alt="image" width="200"></td>
+            <td>{{ item.total_neitral }}</td>
+            <td>{{ item.total_social }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endif %}
+
+{% if answers %}
+  <h2 class="title-text">Жауаптар саны</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Жауап</th>
+        <th>Саны</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in answers %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>
+            {% if test_type_id > 3 %}
+              {{ item.name }}
+            {% else %}
+              {{ item.answer }}
+            {% endif %}
+          </td>
+          <td>{{ item.count }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if anwers_per_question %}
+  <h2 class="title-text">Әр сұраққа берілген жауаптар саны</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Сұрақ</th>
+        <th>Жауап</th>
+        <th>Саны</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in anwers_per_question %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{ item.question__name }}</td>
+          <td>
+            {% if test_type_id > 3 %}
+              {{ item.answer__name }}
+            {% else %}
+              {{ item.answer }}
+            {% endif %}
+          </td>
+          <td>{{ item.count }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("userSearch");
+    const suggestions = document.getElementById("suggestions");
+
+    input.addEventListener("input", function () {
+      const query = input.value.trim();
+      if (query.length < 2) {
+        suggestions.innerHTML = "";
+        return;
+      }
+
+      fetch(`/analytics/search-users/?q=${encodeURIComponent(query)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Деректерді алу кезінде қате");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          suggestions.innerHTML = "";
+          if (data.length === 0) {
+            suggestions.innerHTML = "<div class='no-results'>Пациент табылмады</div>";
+            return;
+          }
+          data.forEach((user) => {
+            const div = document.createElement("div");
+            div.classList.add("suggestion-item");
+            div.textContent = user.full_name;
+            div.addEventListener("click", function () {
+              input.value = user.full_name;
+              document.getElementById("selectedIIN").value = user.iin;
+              suggestions.innerHTML = "";
+            });
+            suggestions.appendChild(div);
+          });
+
+        })
+        .catch((error) => {
+          console.error(error);
+          suggestions.innerHTML = "<div class='error-message'>Іздеу кезінде қате пайда болды</div>";
+        });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!suggestions.contains(e.target) && e.target !== input) {
+        suggestions.innerHTML = "";
+      }
+    });
+  });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const monthNames = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым',
+                        'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
+
+    const originalLabels = {{ labels|safe }};
+    const localizedLabels = originalLabels.map(num => monthNames[num - 1]);
+
+    const ctx = document.getElementById('testsChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels|safe }},
+            datasets: [{
+                label: 'Саны',
+                data: {{ data|safe }},
+                backgroundColor: 'rgba(44, 62, 80, 1)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0 }
+                }
+            }
+        }
+    });
+</script>
+
+
+

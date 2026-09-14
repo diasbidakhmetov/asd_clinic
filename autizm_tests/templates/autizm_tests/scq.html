@@ -1,0 +1,134 @@
+{% extends 'core/base.html' %}
+
+{% load static%}
+
+{% block title %}
+   {{ title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/binary.css'%}">
+{% endblock %}
+
+{% block content %}
+
+<div id="binary-question-container">
+   <div class="progress-container">
+        <progress id="progress-bar" value="0" max="40"></progress>
+        <span id="progress-text">0 / 40</span>
+    </div>
+    <div id="binary-question"> 
+    </div>
+    <div class="binary-button-container">
+        <button id="yes-btn">Иә</button>
+        <button id="no-btn">Жоқ</button>
+    </div>
+</div>
+
+<script>
+    const questions = JSON.parse('{{ questions_json|escapejs }}');
+    const scoringTable = {
+        1: null,
+        2: 1, 3: 1, 4: 1, 5: 0, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1,
+        11: 1, 12: 0, 13: 0, 14: 1, 15: 1, 16: 1, 17: 0, 18: 0, 19: 0, 20: 1,
+        21: 1, 22: 0, 23: 0, 24: 0, 25: 0, 26: 0, 27: 0, 28: 0, 29: 0, 30: 0,
+        31: 1, 32: 0, 33: 1, 34: 0, 35: 1, 36: 0, 37: 0, 38: 0, 39: 1, 40: 1
+    };
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answers = [];
+    let considerFrom = 2;
+
+    const questionEl = document.getElementById('binary-question');
+
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    function showQuestion(index) {
+        questionEl.innerHTML = `<span class="question-number">Сұрақ ${index + 1}:</span><br>${questions[index]}`;
+        updateProgress();
+    }
+
+    yesBtn.addEventListener('click', () => handleAnswer("Иә"));
+    noBtn.addEventListener('click', () => handleAnswer("Жоқ"));
+
+    function handleAnswer(answer) {
+        let questionNum = currentQuestionIndex + 1;
+        answers.push({ question: questionNum, answer });
+
+        if (questionNum === 1) {
+            if (answer === "Жоқ") {
+                considerFrom = 8;
+                for (let i = 2; i < 8; i++) {
+                    answers.push({ question: i, answer: "" });
+                }
+            } else {
+                considerFrom = 2;
+            }
+            currentQuestionIndex = considerFrom - 2;
+        } else if (questionNum >= considerFrom && scoringTable[questionNum] !== null) {
+            score += (answer === "Жоқ" ? scoringTable[questionNum] : 1 - scoringTable[questionNum]);
+        }
+
+        nextQuestion();
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            showQuestion(currentQuestionIndex);
+        } else {
+            showResult();
+        }
+    }
+
+    function updateProgress() {
+        progressBar.value = currentQuestionIndex+1;
+        progressText.textContent = `${currentQuestionIndex+1} / ${questions.length}`;
+    }
+
+    function showResult() {
+        let description = "";
+        if (score <= 14) {
+            description = "Аутизм қаупі төмен";
+        } else if (score >= 15 && score <= 21) {
+            description = "Тәуекелдің жоғарылауы, маманға қосымша диагноз қою ұсынылады";
+        } else {
+            description = "Аутизмнің жоғары ықтималдығы, клиникалық психологтың немесе психиатрдың кеңесі қажет";
+        }
+
+        sendResults(score, answers, description);
+    }
+
+    function sendResults(score, answers, description) {
+        fetch('{% url "autizm_tests:submit_scq" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                score: score,
+                answers: answers,
+                description: description
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Ответ сервера:', data);
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+    }
+
+    showQuestion(currentQuestionIndex);
+
+</script>
+{% endblock %}

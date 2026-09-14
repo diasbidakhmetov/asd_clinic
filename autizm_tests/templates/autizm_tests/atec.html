@@ -1,0 +1,167 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/atec.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="atec-table-container">
+    <form id="atec-form">
+        {% csrf_token %}
+        <div id="question-groups">
+            {% for type, questions in questions_by_type.items %}
+                <div class="question-group" data-section="{{ forloop.counter }}" data-type="{{ type }}" style="{% if not forloop.first %}display: none;{% endif %}">
+                    <h3>{{ type }}</h3>
+                    <table border="1" class="atec-table">
+                        <tr>
+                            <th>№</th>
+                            <th>Сұрақ</th>
+                            {% if forloop.counter == 4 %}
+                                <th>Маңызды мәселе</th>
+                                <th>Орташа мәселе</th>
+                                <th>Жеңіл мәселе</th>
+                                <th>Мәселе емес</th>
+                            {% else %}
+                                <th>Иә</th>
+                                <th>Кейде</th>
+                                <th>Жоқ</th>
+                            {% endif %}
+                        </tr>
+                        {% for question in questions %}
+                            <tr data-question-id="{{ question.id }}" data-question-name="{{ question.name }}">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ question.name }}</td>
+                                {% if forloop.parentloop.counter == 4 %}
+                                    <td><input type="radio" name="{{question.name}}" value="3"></td>
+                                    <td><input type="radio" name="{{question.name}}" value="2"></td>
+                                    <td><input type="radio" name="{{question.name}}" value="1"></td>
+                                    <td><input type="radio" name="{{question.name}}" value="0"></td>
+                                {% else %}
+                                    <td><input type="radio" name="{{question.name}}" value="2"></td>
+                                    <td><input type="radio" name="{{question.name}}" value="1"></td>
+                                    <td><input type="radio" name="{{question.name}}" value="0"></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="button" class = "next" id="next-btn">Келесі</button>
+        <button type="submit" class = "end" id="submit-btn" style="display: none;">Тестті аяқтау</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let currentGroup = 0;
+    const groups = document.querySelectorAll(".question-group");
+    const nextBtn = document.getElementById("next-btn");
+    const submitBtn = document.getElementById("submit-btn");
+
+    nextBtn.addEventListener("click", function () {
+        groups[currentGroup].style.display = "none";
+        currentGroup++;
+
+        if (currentGroup < groups.length) {
+            groups[currentGroup].style.display = "block";
+        }
+
+        if (currentGroup === groups.length - 1) {
+            nextBtn.style.display = "none";
+            submitBtn.style.display = "block";
+        }
+    });
+
+    document.getElementById("atec-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let totalScore = 0;
+        let answers = [];
+        const formData = new FormData(this);
+
+        groups.forEach(group => {
+            const section = parseInt(group.getAttribute("data-section"), 10);
+            const questionType = group.getAttribute("data-type");
+
+            group.querySelectorAll("tr[data-question-id]").forEach(row => {  
+                let questionId = row.getAttribute("data-question-id"); 
+                let questionName = row.getAttribute("data-question-name");
+                let selectedInput = row.querySelector("input[type='radio']:checked");
+                let value = selectedInput ? parseInt(selectedInput.value, 10) : null;
+                let answerText = selectedInput ? getAnswerText(value, section) : "Жауап жоқ";
+
+                if (value !== null) {
+                    if (section === 2) { 
+                        value = value === 2 ? 0 : value === 1 ? 1 : 2;
+                    }
+                    totalScore += value;
+                } else {
+                    value = -1;
+                }
+
+                answers.push({ 
+                    question_id: questionId,
+                    question_name: questionName,
+                    type: questionType,
+                    answer: answerText, 
+                    score: value 
+                });
+            });
+
+        });
+
+        let resultDescription = getAtecDescription(totalScore);
+        let payload = {
+            total_score: totalScore,
+            description: resultDescription,
+            answers: answers
+        };
+
+        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]")?.value;
+        if (!csrfToken) {
+            console.error("CSRF токен не найден!");
+            return;
+        }
+
+        fetch("{% url 'autizm_tests:save_atec_results' %}", {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Результаты сохранены:", data);
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
+            }
+        })
+    });
+
+
+    function getAnswerText(value, section) {
+        if (value === null) return "Жауап жоқ";
+        if (section === 4) {
+            return ["Мәселе емес", "Жеңіл мәселе", "Орташа мәселе", "Маңызды мәселе"][value];
+        }
+        return ["Жоқ", "Кейде", "Иә"][value];
+    }
+
+    function getAtecDescription(score) {
+        if (score <= 15) return "Аутизм белгілері жоқ, толықтай қалыпты, жақсы дамыған бала";
+        if (score <= 30) return "Аутизм белгілері жоқ, бірақ дамуында сәл кідірісі бар бала";
+        if (score <= 40) return "Аутизмнің жеңіл немесе орташа дәрежесі";
+        if (score <= 60) return "Аутизмнің орташа дәрежесі";
+        return "Аутизмнің ауыр дәрежесі";
+    }
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,163 @@
+
+{% load static%}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/table.css'%}">
+    <link rel="stylesheet" href="{% static 'css/paginator.css'%}">
+    <link rel="stylesheet" href="{% static 'css/patients.css'%}">
+    
+{% endblock %}
+
+
+<div class="patient-container">
+    <p class = "list-title">Пациенттер тізімі</p>
+    {% comment %} Қолданушыны іздеу формасы {% endcomment %}
+    <div class = "filter-container">
+        <form method="get" style="position: relative; max-width: 300px;">
+            <input type="text" id="userSearch" name="user_query" placeholder="Қолданушының аты-жөні" autocomplete="off" value="{{ user_query|default:'' }}" class="form-control">
+            <input type="hidden" name="iin" id="selectedIIN">
+            <div id="suggestions" class="suggestions-box"></div>
+            <button type="submit" class="btn btn-primary mt-2">Таңдау</button>
+        </form>
+    </div>
+    {% comment %} Қолданушыны іздеу формасы {% endcomment %}
+
+    <table border="1" class = "test-result-table">
+    <tr>
+        <th>№</th>
+        <th>Пациенттің аты-жөні</th>
+        <th>Туған күні</th>
+        <th>Жынысы</th>
+    </tr>
+    {% for patient in patients %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>
+                <a href = "{% url 'users:profile'  patient.iin%}">
+                    {{patient.last_name}} {{patient.first_name}} {% if patient.father_name %}{{patient.father_name}}{% endif %}
+                </a>
+            </td>
+            <td>{{patient.b_day|date:"d.m.Y"}} </td>
+            <td>{{patient.gender}} </td>
+        </tr>
+    {% endfor %}
+    </table>
+<div class="page-navigation">
+                <ul>
+                    <li {% if not patients.has_previous %} disabled {% endif %}>
+                        <a href="{% if patients.has_previous %} 
+                                    {% if test_type_id %}
+                                        {% url 'analytics:filtered_paginator' test_type_id patients.previous_page_number %}
+                                    {% else %}
+                                        {% url 'analytics:paginator' patients.previous_page_number %}
+                                    {% endif %}
+                                {% else %}#{% endif %}">
+                            Артқа
+                        </a>
+                    </li>
+
+                    {% with patients.number as current_page %}
+                    {% with patients.paginator.num_pages as total_pages %}
+                    
+                        <!-- Первая страница -->
+                        {% if current_page > 3 %}
+                            <li {% if current_page == 1 %} class="active" {% endif %}>
+                                <a href="{% url 'analytics:paginator' 1 %}">1</a>
+                            </li>
+                            {% if current_page > 4 %}
+                                <li>...</li>
+                            {% endif %}
+                        {% endif %}
+
+                        <!-- Средние страницы -->
+                        {% for page in patients.paginator.page_range %}
+                            {% if page >= current_page|add:"-2" and page <= current_page|add:"2" %}
+                                <li {% if page == current_page %} class="active" {% endif %}>
+                                    <a href="{% url 'analytics:paginator' page %}">{{ page }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- Последняя страница -->
+                        {% if current_page < total_pages|add:"-2" %}
+                            {% if current_page < total_pages|add:"-3" %}
+                                <li>...</li>
+                            {% endif %}
+                            <li {% if current_page == total_pages %} class="active" {% endif %}>
+                                <a href="{% url 'analytics:paginator' total_pages %}">{{ total_pages }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% endwith %}
+                    {% endwith %}
+
+                    <!-- Кнопка "Вперед" -->
+                    <li {% if not patients.has_next %} disabled {% endif %}>
+                        <a href="{% if patients.has_next %}
+                                    {% if test_type_id %}
+                                        {% url 'analytics:filtered_paginator' test_type_id patients.next_page_number %}
+                                    {% else %}
+                                        {% url 'analytics:paginator' patients.next_page_number %}
+                                    {% endif %}
+                                {% else %}#{% endif %}">
+                            Келесі
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("userSearch");
+    const suggestions = document.getElementById("suggestions");
+
+    input.addEventListener("input", function () {
+      const query = input.value.trim();
+      if (query.length < 2) {
+        suggestions.innerHTML = "";
+        return;
+      }
+
+      fetch(`/analytics/search-users/?q=${encodeURIComponent(query)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Деректерді алу кезінде қате");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          suggestions.innerHTML = "";
+          if (data.length === 0) {
+            suggestions.innerHTML = "<div class='no-results'>Пациент табылмады</div>";
+            return;
+          }
+          data.forEach((user) => {
+            const div = document.createElement("div");
+            div.classList.add("suggestion-item");
+            div.textContent = user.full_name;
+            div.addEventListener("click", function () {
+              input.value = user.full_name;
+              document.getElementById("selectedIIN").value = user.iin;
+              suggestions.innerHTML = "";
+            });
+            suggestions.appendChild(div);
+          });
+
+        })
+        .catch((error) => {
+          console.error(error);
+          suggestions.innerHTML = "<div class='error-message'>Іздеу кезінде қате пайда болды</div>";
+        });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!suggestions.contains(e.target) && e.target !== input) {
+        suggestions.innerHTML = "";
+      }
+    });
+  });
+</script>

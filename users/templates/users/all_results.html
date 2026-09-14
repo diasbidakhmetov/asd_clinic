@@ -1,0 +1,132 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/profile.css'%}">
+  <link rel="stylesheet" href="{% static 'css/paginator.css'%}">
+{% endblock %}
+
+{% block content %}
+    {% if user_id %}
+        <div class="profile-title">
+            <p>{% if form.last_name %}{{form.last_name}}{% endif %}
+                {% if form.first_name %}{{form.first_name}}{% endif %}
+                {% if form.father_name %}{{form.father_name}}{% endif %}
+            </p>
+        </div>
+    {% else %}
+        <div class="profile-title">
+            <p>Жеке кабинет</p>
+        </div>
+    {% endif %}
+
+    <div class="profile-content">
+        {% include 'users/base_profile.html'%}
+
+        <div class="result-cards-container ">        
+            {% if results %}
+                <div class="test-list" id="test-list">
+                    {% for result in results %}
+                        <div class="test-card" data-test-type="{{ result.test_type }}">
+                            <div class="test-info">
+                                <strong>{{result.test_type}}</strong><br>
+                                <span>Тестті өту күні: {{result.date_taken|date:"d.m.Y H:i:s"}}</span>
+                            </div>
+                            <a class="details-btn" href = "{% url 'results:test_results' result.test_type.code_name  result.id%}">
+                                Толығырақ
+                            </a>
+                        </div>
+                    {% endfor %}
+                    <p id="no-results" style="display: none; text-align: center;">Бұл категория үшін жазбалар табылмады.</p>
+                </div>
+            {% endif %}
+
+            <div class="page-navigation">
+    <ul>
+        <!-- Кнопка "Артқа" -->
+        <li {% if not results.has_previous %} disabled {% endif %}>
+            <a href="{% if results.has_previous %}
+                        {% if test_type_id %}
+                            {% url 'users:filtered_paginator' test_type_id results.previous_page_number %}
+                        {% else %}
+                            {% url 'users:paginator' results.previous_page_number %}
+                        {% endif %}
+                     {% else %}#{% endif %}">
+                Артқа
+            </a>
+        </li>
+
+        {% with results.number as current_page %}
+        {% with results.paginator.num_pages as total_pages %}
+
+            <!-- Первая страница -->
+            {% if current_page > 3 %}
+                <li>
+                    <a href="{% if test_type_id %}
+                                {% url 'users:filtered_paginator' test_type_id 1 %}
+                             {% else %}
+                                {% url 'users:paginator' 1 %}
+                             {% endif %}">1</a>
+                </li>
+                {% if current_page > 4 %}
+                    <li>...</li>
+                {% endif %}
+            {% endif %}
+
+            <!-- Средние страницы -->
+            {% for page in results.paginator.page_range %}
+                {% if page >= current_page|add:"-2" and page <= current_page|add:"2" %}
+                    <li {% if page == current_page %} class="active" {% endif %}>
+                        <a href="{% if test_type_id %}
+                                    {% url 'users:filtered_paginator' test_type_id page %}
+                                 {% else %}
+                                    {% url 'users:paginator' page %}
+                                 {% endif %}">
+                            {{ page }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Последняя страница -->
+            {% if current_page < total_pages|add:"-2" %}
+                {% if current_page < total_pages|add:"-3" %}
+                    <li>...</li>
+                {% endif %}
+                <li>
+                    <a href="{% if test_type_id %}
+                                {% url 'users:filtered_paginator' test_type_id total_pages %}
+                             {% else %}
+                                {% url 'users:paginator' total_pages %}
+                             {% endif %}">
+                        {{ total_pages }}
+                    </a>
+                </li>
+            {% endif %}
+
+        {% endwith %}
+        {% endwith %}
+
+        <!-- Кнопка "Келесі" -->
+        <li {% if not results.has_next %} disabled {% endif %}>
+            <a href="{% if results.has_next %}
+                        {% if test_type_id %}
+                            {% url 'users:filtered_paginator' test_type_id results.next_page_number %}
+                        {% else %}
+                            {% url 'users:paginator' results.next_page_number %}
+                        {% endif %}
+                     {% else %}#{% endif %}">
+                Келесі
+            </a>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    </div>
+{% endblock %}

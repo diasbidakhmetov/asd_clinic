@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% load static%}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if user_id %}
+                <div class="profile-title">
+            <p>{% if form.last_name %}{{form.last_name}}{% endif %}
+                {% if form.first_name %}{{form.first_name}}{% endif %}
+                {% if form.father_name %}{{form.father_name}}{% endif %}
+            </p>
+        </div>
+    {% else %}
+        <div class="profile-title">
+            <p>Жеке кабинет</p>
+        </div>
+    {% endif %}
+    <div class="profile-content">
+        {% include 'users/base_profile.html'%}
+
+        <div class="user-card-content">
+            <h2>Жеке деректер</h2>
+            <table class="user-info">
+                <tr><td class = "category">ЖСН:</td><td>{% if form.iin %}{{form.iin}}{% endif %}</td></tr>
+                <tr><td class = "category">Тегі:</td><td>{% if form.last_name %}{{form.last_name}}{% endif %}</td></tr>
+                <tr><td class = "category">Аты:</td><td>{% if form.first_name %}{{form.first_name}}{% endif %}</td></tr>
+                <tr><td class = "category">Әкесінің аты:</td><td>{% if form.father_name %}{{form.father_name}}{% endif %}</td></tr>
+                <tr><td class = "category">Жасы:</td><td>{% if age %}{{age}}{% endif %}</td></tr>
+                <tr><td class = "category">Туған күні:</td><td>{{bday}}</td></tr>
+                <tr><td class = "category">Жынысы:</td><td>{% if form.gender %}{{form.gender}}{% endif %}</td></tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}

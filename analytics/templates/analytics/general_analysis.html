@@ -1,0 +1,116 @@
+
+{% load custom_filters%}
+
+    <main class="main-content">
+      <h1>Тест бойынша аналитикалық мәліметтер</h1>
+
+      <h2>Өтілген тест бойынша дерек</h2>
+      <div class="cards">
+        <div class="card">
+          <p>Жалпы саны</p>
+          <h2>{{total_test}}</h2>
+        </div>
+      
+        <div class="card">
+          <p>M-CHAT-R</p>
+          <h2>{{total_m_chat}}</h2>
+        </div>
+      
+        <div class="card">
+          <p>CARS</p>
+          <h2>{{total_cars}}</h2>
+        </div>
+        <div class="card">
+          <p>SCQ</p>
+          <h2>{{total_scq}}</h2>
+        </div>
+        <div class="card">
+          <p>ATEC</p>
+          <h2>{{total_atec}}</h2>
+        </div>
+        <div class="card">
+          <p>Eye Tracking</p>
+          <h2>{{total_eye}}</h2>
+        </div>
+        <div class="card">
+          <p>CASD</p>
+          <h2>{{total_casd}}</h2>
+        </div>
+      </div>
+
+      <h2>Қолданушылар туралы аналитика</h2>
+      <div class="cards">
+        <div class="card">
+          <p>Жалпы саны</p>
+          <h2>{{total_users}}</h2>
+        </div>
+        <div class="card">
+          <p>Ұл бала</p>
+          <h2>{{total_male}}</h2>
+        </div>
+        <div class="card">
+          <p>Қыз бала</p>
+          <h2>{{total_female}}</h2>
+        </div>
+        <div class="card">
+          <p>Орташа жасы</p>
+          <h2>{{average_age}}</h2>
+        </div>
+      </div>
+
+      <h2>Әр тест бойынша орташа балл саны</h2>
+      <div class="cards">
+        <div class="card">
+          <p>M-CHAT-R</p>
+          <h2>{{average_point_m_chat}}</h2>
+        </div>
+        <div class="card">
+          <p>CARS</p>
+          <h2>{{average_point_cars}}</h2>
+        </div>
+        <div class="card">
+          <p>SCQ</p>
+          <h2>{{average_point_scq}}</h2>
+        </div>
+        <div class="card">
+          <p>ATEC</p>
+          <h2>{{average_point_atec}}</h2>
+        </div>
+        <div class="card">
+          <p>CASD</p>
+          <h2>{{average_point_casd}}</h2>
+        </div>
+      </div>
+
+      <h2>Сипаттамалық статистика</h2>
+    <div class="description-table-container">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Сипаттама</th>
+            {% for test_name in statistics_all.keys %}
+              <th>{{ test_name }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for stat_key, label in stat_labels.items %}
+            <tr>
+              <td>{{ label }}</td>
+              {% for test in statistics_all.values %}
+                <td>
+                  {% with value=test|get_item:stat_key %}
+                    {% if value is not None %}
+                      {{ value|floatformat:2 }}
+                    {% else %}
+                      —
+                    {% endif %}
+                  {% endwith %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>

@@ -1,0 +1,90 @@
+.atec-table-container {
+    padding: 20px;
+    margin: 0 100px;
+
+}
+.test-result-table-continer {
+    margin: 0 12%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.atec-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.atec-table th {
+    border: 1px solid#ffffff;
+}
+.atec-table, th, td {
+    border: 1px solid#2c3e50;
+}
+
+.atec-table th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+.atec-table th {
+    background:  #2c3e50;
+    color: rgb(255, 252, 252);
+}
+
+.atec-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.atec-table tr:hover {
+    background: #f1f1f1;
+}
+
+.table-question{
+    text-align: left;
+    padding-left: 2%;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.next, .end{
+    margin-top: 20px;
+    color: #ffffff;
+    background:#2c3e50;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 1px solid #000000;
+    
+}
+.next:hover{
+    background:#52677e;  
+}
+
+.end:hover{
+    background:#52677e;  
+}
+
+input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #2c3e50;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+
+input[type="radio"]:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #2c3e50;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

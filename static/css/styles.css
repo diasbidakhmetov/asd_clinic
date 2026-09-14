@@ -1,0 +1,115 @@
+
+/* ФЛЭШ УВЕДОМЛЕНИЯ */
+.btn-success{
+    background-color: rgb(0, 119, 255);
+    text-align: center;
+    transition: background-color 0.3s ease; 
+}
+
+.btn-success:hover {
+    background-color: blue; 
+}
+.container{
+    width: 100%;
+    font-size: medium;
+}
+.head_container{
+    margin: center;
+}
+
+
+.wrapper-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 20px 40px;
+    width: 100%;
+ }
+
+.table-container {
+  display: inline-block;
+  align-items: flex-start;
+  max-width: 90%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Контент занимает всё доступное пространство */
+.contents{
+    flex: 1;
+}
+
+
+
+/* ФУТЕР */
+
+footer {
+    font-family: Georgia, serif;
+    background-color: #f8f9fa;
+    padding: 30px 5px;
+    text-align: center;
+    font-size: 10px;
+    justify-content: center
+  }
+
+  footer.copyright {
+    font-family: Verdana, sans-serif;
+    margin-top: 25px;
+    text-align: center;
+  }
+  footer .copyright img {
+    max-width: 200px;
+  }
+  footer.copyright p {
+    color: #000000;
+    /* font-weight: bold; */
+    font-size: .9em;
+  }
+  footer .copyright ul {  
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  footer.copyright ul li {
+    list-style: none;
+  }
+  footer .copyright ul li a {
+    color: #000000;
+    -webkit-transition: color 0.4s ease-in-out;
+    transition: color 0.4s ease-in-out;
+    margin-right: 20px;
+  }
+  footer .copyright ul li a:hover {
+    color: #000000;
+    text-decoration: none;
+  }
+
+/* ПОЛНОЭКРННЫЙ РЕЖИМ */
+.test_images {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+/* -------------------------------------------- */
+

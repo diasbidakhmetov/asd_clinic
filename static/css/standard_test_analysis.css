@@ -1,0 +1,164 @@
+
+.standard-tests-container {
+  max-width: 900px;
+  width: 100%;
+
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+h1 {
+  color: #2c3e50;
+  margin: 20px 0;
+}
+
+.title-text{
+  color: #2c3e50;
+  margin: 20px 0;
+}
+
+
+  form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    
+  }
+
+  input.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+
+
+  form button.btn {
+    white-space: nowrap;
+  }
+
+
+select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button.btn:hover {
+  background-color: #52677e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+table th, table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.suggestions-box {
+  border-top: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+.suggestions-box:empty {
+  display: none;
+  border: none;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5;
+}
+
+.no-results, .error-message {
+  padding: 10px;
+  color: #888;
+  font-style: italic;
+}
+
+img {
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.test-count-card {
+  background:#2c3e50;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px 25px;
+  border-left: 8px solid #2c3e50;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container {
+  width: 100%;
+  display: flex;
+  gap: 40px ;
+}
+.testchart-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px ;
+}
+
+#testsChart {
+  width: 60% !important;
+  height: 100% !important;
+}

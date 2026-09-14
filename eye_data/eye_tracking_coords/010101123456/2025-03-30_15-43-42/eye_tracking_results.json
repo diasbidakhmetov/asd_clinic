@@ -1,0 +1,10 @@
+{
+    "/static/images/test_images/test_image_1.jpeg": {
+        "interest_zone": 5,
+        "neutral_zone": 30
+    },
+    "/static/images/test_images/test_image_2.jpeg": {
+        "interest_zone": 12,
+        "neutral_zone": 13
+    }
+}

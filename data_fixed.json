@@ -1,0 +1,1949 @@
+[
+    {
+        "model": "sessions.session",
+        "pk": "z0mg1y6d2cipm8ejzkgatcexekmqnrhk",
+        "fields": {
+            "session_data": ".eJxVizsOwjAQBe_iGkVrrz8xHXRpuEK0Xm9kCylI2KkQdyeRKKB8M_Neaqatl3lr8pxrVmcVATRobdA6r06_OhHfZT2aY7bhMLL2ytTrYx2m6XbZyfVb_V0LtbL_EFBiEhgDsSXL46glZPDGOhu0RRcNZ0w7QWJBL8yLJnSLyR4kJPX-AAoWOAc:1tpkgX:dYzlO0_S4IqOQWLW7-bQFN3b8pNmqIMm-Psu1LYFHuI",
+            "expire_date": "2025-03-19T09:05:01.991Z"
+        }
+    },
+    {
+        "model": "users.gender",
+        "pk": 1,
+        "fields": {
+            "name": "Ер"
+        }
+    },
+    {
+        "model": "users.gender",
+        "pk": 2,
+        "fields": {
+            "name": "Әйел"
+        }
+    },
+    {
+        "model": "users.user",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$HnMrqwmgU2mpivwzZi099I$nzNy3pS2Xm7IF4gdooNRys2f6L9i651qzmf5MhChCtk=",
+            "last_login": "2025-03-05T09:01:45.153Z",
+            "is_superuser": false,
+            "first_name": "Мирас",
+            "last_name": "Бидахметов",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-03-04T20:06:55.328Z",
+            "father_name": "Жандосұлы",
+            "b_day": "2025-02-24",
+            "gender": 1,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$4Bjh5NGQpVgMcYttGkrm3L$4seR8XFnsPfVdpfnPZc5mnSoPoJKJK43dozU01Wyapw=",
+            "last_login": "2025-03-05T09:05:01Z",
+            "is_superuser": true,
+            "first_name": "Диас",
+            "last_name": "Бидахметов",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2025-03-04T16:12:58Z",
+            "father_name": null,
+            "b_day": "1990-01-01",
+            "gender": 1,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "results.testtypes",
+        "pk": 1,
+        "fields": {
+            "name": "Eye Tracking"
+        }
+    },
+    {
+        "model": "results.testtypes",
+        "pk": 2,
+        "fields": {
+            "name": "M-CHAT"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 1,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:48:47.175Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 2,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:50:10.875Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 3,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:51:53.207Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 4,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:52:46.247Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 5,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:55:55.063Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 6,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:58:17.686Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 7,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T09:59:08.965Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 8,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:33:06.459Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 9,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:35:23.944Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 10,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:36:55.548Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 11,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:37:19.839Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 12,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:45:13.058Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 13,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:47:11.188Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 14,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T10:48:32.640Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 15,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T11:07:18.373Z"
+        }
+    },
+    {
+        "model": "results.testresults",
+        "pk": 16,
+        "fields": {
+            "iin": "900101123456",
+            "test_type": 2,
+            "date_taken": "2025-03-06T11:08:47.303Z"
+        }
+    },
+    {
+        "model": "results.eyedescription",
+        "pk": 1,
+        "fields": {
+            "name": "Аутизм белгілері анықталмады"
+        }
+    },
+    {
+        "model": "results.eyedescription",
+        "pk": 2,
+        "fields": {
+            "name": "Аутизм белгілері анықталмады, бірақ тестті тағы бір рет өту ұсынылады"
+        }
+    },
+    {
+        "model": "results.eyedescription",
+        "pk": 3,
+        "fields": {
+            "name": "Аутизм белгілері бар"
+        }
+    },
+    {
+        "model": "results.mchatrisklevel",
+        "pk": 1,
+        "fields": {
+            "name": "ТӨМЕН ҚАУІП: Егер бала 24 айдан кіші болса, 2 жасқа толған кезде қайта тестілеу ұсынылады"
+        }
+    },
+    {
+        "model": "results.mchatrisklevel",
+        "pk": 2,
+        "fields": {
+            "name": "ОРТАША ҚАУІП: Нәтижені нақтылау үшін қосымша кезеңдік сұхбатты қолдану ұсынылады. Егер MCHAT-R/F кезеңінің нәтижесі 2 немесе одан жоғары болса, диагностикадан өтіп, ерте араласу шараларын қабылдаңыз"
+        }
+    },
+    {
+        "model": "results.mchatrisklevel",
+        "pk": 3,
+        "fields": {
+            "name": "ЖОҒАРЫ ҚАУІП: Дереу диагностикадан өтіп, ерте араласу шараларын қабылдаңыз"
+        }
+    },
+    {
+        "model": "results.mchatrisklevel",
+        "pk": 4,
+        "fields": {
+            "name": "ОРТАША ҚАУІП: Нәтижені нақтылау үшін қосымша кезеңдік сұхбатты қолдану ұсынылады. Егер M-CHAT-R/F кезеңінің нәтижесі 2 немесе одан жоғары болса, диагностикадан өтіп, ерте араласу шараларын қабылдаңыз"
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 4,
+        "fields": {
+            "name": "Егер сіз бөлменің екінші шетінде тұрған бір нәрсені көрсетсеңіз, сіздің балаңыз соған қарай ма? (Мысалы: егер сіз ойыншықты немесе жануарды көрсетсеңіз, балаңыз сол ойыншыққа немесе жануарға қарай ма?",
+            "number": 1
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 5,
+        "fields": {
+            "name": "Сіз балаңыздың саңырау болуы мүмкін деп ойлап көрдіңіз бе?",
+            "number": 2
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 6,
+        "fields": {
+            "name": "Сіздің балаңыз қиял-ғажайып немесе рөлдік ойындар ойнай ма? (Мысалы: бос кеседен ішіп жатқандай болу, телефонмен сөйлесіп жатқандай болу, қуыршақты немесе жұмсақ ойыншықты тамақтандырғандай болу)",
+            "number": 3
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 7,
+        "fields": {
+            "name": "Сіздің балаңыз заттарға өрмелеуді ұната ма? (Мысалы: жиһазға, ойын алаңындағы құрылымдарға, баспалдақтарға)",
+            "number": 4
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 8,
+        "fields": {
+            "name": "Сіздің балаңыз көзінің алдында саусақтарымен ерекше қимылдар жасай ма? (Мысалы: балаңыз саусақтарын көзінің жанында жылжыта ма?)",
+            "number": 5
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 9,
+        "fields": {
+            "name": "Сіздің балаңыз бір нәрсені сұрау немесе көмек алу үшін саусағымен көрсетеді ме? (Мысалы: жетуге қолы жетпейтін тәтті немесе ойыншыққа саусағымен көрсету)",
+            "number": 6
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 10,
+        "fields": {
+            "name": "Сіздің балаңыз қызықты нәрсеге назар аударту үшін саусағымен көрсетеді ме? (Мысалы: аспандағы ұшаққа немесе жолдағы үлкен жүк көлігіне саусағымен көрсету)",
+            "number": 7
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 11,
+        "fields": {
+            "name": "Сіздің балаңыз басқа балаларға қызығушылық таныта ма? (Мысалы: басқа балаларды бақылау, оларға күлу, оларға бару)",
+            "number": 8
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 12,
+        "fields": {
+            "name": "Сіздің балаңыз сізге заттарды көрсету үшін оларды әкеліп, сіздің жаныңызда ұстайды ма, жай ғана бөлісу үшін, көмек сұрамай ма? (Мысалы: сізге гүл, жұмсақ ойыншық немесе ойыншық жүк көлігін көрсету)",
+            "number": 9
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 13,
+        "fields": {
+            "name": "Сіз балаңызды атымен шақырғанда, ол жауап бере ме? (Мысалы: бала сізге қарап, дыбыс шығарып немесе былдырлап, сіздің шақыруыңызға назар аудара ма?)",
+            "number": 10
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 14,
+        "fields": {
+            "name": "Сіз балаңызға күлімсіресеңіз, ол сізге жауап ретінде күлімсірей ме?",
+            "number": 11
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 15,
+        "fields": {
+            "name": "Сіздің балаңыз тұрмыстық дыбыстардан қорқа ма? (Мысалы: балаңыз шаңсорғыштың немесе қатты музыканың дыбысына айқайлап немесе жылап жауап бере ме?)",
+            "number": 12
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 16,
+        "fields": {
+            "name": "Сіздің балаңыз жүре ала ма?",
+            "number": 13
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 17,
+        "fields": {
+            "name": "Сіз балаңызбен сөйлескенде, онымен ойнағанда немесе оны киіндіргенде, ол сізге тікелей қарай ма?",
+            "number": 14
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 18,
+        "fields": {
+            "name": "Сіздің балаңыз сіздің әрекеттеріңізді қайталауға тырыса ма? (Мысалы: қоштасу кезінде қол бұлғау, шапалақтау, сізге жауап ретінде күлкілі дыбыстар шығару)",
+            "number": 15
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 19,
+        "fields": {
+            "name": "Егер сіз артыңызға бұрылып қарасаңыз, сіздің балаңыз да сіз қарап тұрған нәрсені көру үшін айналаға қарайды ма?",
+            "number": 16
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 20,
+        "fields": {
+            "name": "Сіздің балаңыз сіздің назарыңызды өзіне аударуға тырыса ма? (Мысалы: бала сізге қарап, мақтау күтеді, «қара», «маған қара» деп айтады)",
+            "number": 17
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 21,
+        "fields": {
+            "name": "Сіздің балаңыз сіз оған нұсқаусыз бір нәрсе жасауды айтқанда түсіне ала ма? (Мысалы: «кітапты орындыққа қой» немесе «маған көрпені алып кел» дегенді қолмен көрсетпей түсіне ме?)",
+            "number": 18
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 22,
+        "fields": {
+            "name": "Егер бірдеңе ерекше болып жатса, балаңыз сіздің бет-әлпетіңізге қарап, сіздің реакцияңызды түсінуге тырыса ма? (Мысалы: балаңыз ерекше немесе күлкілі дыбысты естісе немесе жаңа ойыншықты көрсе, сіздің бетіңізге қарай ма?)",
+            "number": 19
+        }
+    },
+    {
+        "model": "results.mchatquestions",
+        "pk": 23,
+        "fields": {
+            "name": "Сіздің балаңыз қозғалыс белсенділігін ұната ма? (Мысалы: айналып жүру немесе тізеде секіру)",
+            "number": 20
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 1,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 4,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 2,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 5,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 3,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 6,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 4,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 7,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 5,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 8,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 6,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 9,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 7,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 10,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 8,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 11,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 9,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 12,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 10,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 13,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 11,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 14,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 12,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 15,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 13,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 16,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 14,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 17,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 15,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 18,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 16,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 19,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 17,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 20,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 18,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 21,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 19,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 22,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 20,
+        "fields": {
+            "result_id": 15,
+            "score": "3",
+            "risk_level": 4,
+            "question": 23,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 21,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 4,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 22,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 5,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 23,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 6,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 24,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 7,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 25,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 8,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 26,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 9,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 27,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 10,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 28,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 11,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 29,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 12,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 30,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 13,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 31,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 14,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 32,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 15,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 33,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 16,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 34,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 17,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 35,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 18,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 36,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 19,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 37,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 20,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 38,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 21,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 39,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 22,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "results.mchat",
+        "pk": 40,
+        "fields": {
+            "result_id": 16,
+            "score": "3",
+            "risk_level": 4,
+            "question": 23,
+            "answer": "Иә"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 1,
+        "fields": {
+            "action_time": "2025-03-04T16:46:33.704Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "users",
+                "gender"
+            ],
+            "object_id": "2",
+            "object_repr": "Әйел",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2025-03-05T09:06:19.168Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "users",
+                "user"
+            ],
+            "object_id": "900101123456",
+            "object_repr": "900101123456",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 3,
+        "fields": {
+            "action_time": "2025-03-06T07:31:02.940Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "testtypes"
+            ],
+            "object_id": "1",
+            "object_repr": "Eye Tracking",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 4,
+        "fields": {
+            "action_time": "2025-03-06T07:31:25.946Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "testtypes"
+            ],
+            "object_id": "2",
+            "object_repr": "M-CHAT",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 5,
+        "fields": {
+            "action_time": "2025-03-06T07:32:34.061Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatrisklevel"
+            ],
+            "object_id": "1",
+            "object_repr": "ТӨМЕН ҚАУІП: Егер бала 24 айдан кіші болса, 2 жасқа толған кезде қайта тестілеу ұсынылады",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 6,
+        "fields": {
+            "action_time": "2025-03-06T07:32:46.145Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatrisklevel"
+            ],
+            "object_id": "2",
+            "object_repr": "ОРТАША ҚАУІП: Нәтижені нақтылау үшін қосымша кезеңдік сұхбатты қолдану ұсынылады. Егер MCHAT-R/F кезеңінің нәтижесі 2 немесе одан жоғары болса, диагностикадан өтіп, ерте араласу шараларын қабылдаңыз",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 7,
+        "fields": {
+            "action_time": "2025-03-06T07:32:55.684Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatrisklevel"
+            ],
+            "object_id": "3",
+            "object_repr": "ЖОҒАРЫ ҚАУІП: Дереу диагностикадан өтіп, ерте араласу шараларын қабылдаңыз",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 8,
+        "fields": {
+            "action_time": "2025-03-06T07:35:35.583Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "eyedescription"
+            ],
+            "object_id": "1",
+            "object_repr": "Аутизм белгілері анықталмады",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 9,
+        "fields": {
+            "action_time": "2025-03-06T07:35:43.490Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "eyedescription"
+            ],
+            "object_id": "2",
+            "object_repr": "Аутизм белгілері анықталмады, бірақ тестті тағы бір рет өту ұсынылады",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 10,
+        "fields": {
+            "action_time": "2025-03-06T07:35:51.189Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "eyedescription"
+            ],
+            "object_id": "3",
+            "object_repr": "Аутизм белгілері бар",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 11,
+        "fields": {
+            "action_time": "2025-03-06T07:42:17.944Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "1",
+            "object_repr": "Если Вы показываете на что-то на другом конце комнаты, Ваш ребёнок смотрит на это? (Пример: если Вы показываете на игрушку или животное, ребёнок смотрит на игрушку или животное?)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 12,
+        "fields": {
+            "action_time": "2025-03-06T07:42:26.029Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "2",
+            "object_repr": "Вопрос 2: Вы когда-либо предполагали, что Ваш ребёнок может быть глухим?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 13,
+        "fields": {
+            "action_time": "2025-03-06T07:43:26.566Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "3",
+            "object_repr": "Ваш ребёнок играет в воображаемые или сюжетно-ролевые игры? (Пример: притворяется, что пьёт из пустой чашки, изображает, что говорит по телефону, понарошку кормит куклу или плюшевую игрушку?)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 14,
+        "fields": {
+            "action_time": "2025-03-06T07:43:55.124Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "3",
+            "object_repr": "Ваш ребёнок играет в воображаемые или сюжетно-ролевые игры? (Пример: притворяется, что пьёт из пустой чашки, изображает, что говорит по телефону, понарошку кормит куклу или плюшевую игрушку?)",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 15,
+        "fields": {
+            "action_time": "2025-03-06T07:43:55.128Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "2",
+            "object_repr": "Вопрос 2: Вы когда-либо предполагали, что Ваш ребёнок может быть глухим?",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 16,
+        "fields": {
+            "action_time": "2025-03-06T07:43:55.131Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "1",
+            "object_repr": "Если Вы показываете на что-то на другом конце комнаты, Ваш ребёнок смотрит на это? (Пример: если Вы показываете на игрушку или животное, ребёнок смотрит на игрушку или животное?)",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 17,
+        "fields": {
+            "action_time": "2025-03-06T07:45:01.373Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "4",
+            "object_repr": "Егер сіз бөлменің екінші шетінде тұрған бір нәрсені көрсетсеңіз, сіздің балаңыз соған қарай ма? (Мысалы: егер сіз ойыншықты немесе жануарды көрсетсеңіз, балаңыз сол ойыншыққа немесе жануарға қарай ма?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 18,
+        "fields": {
+            "action_time": "2025-03-06T07:45:44.190Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "5",
+            "object_repr": "Сіз балаңыздың саңырау болуы мүмкін деп ойлап көрдіңіз бе?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 19,
+        "fields": {
+            "action_time": "2025-03-06T07:45:56.127Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "6",
+            "object_repr": "Сіздің балаңыз қиял-ғажайып немесе рөлдік ойындар ойнай ма? (Мысалы: бос кеседен ішіп жатқандай болу, телефонмен сөйлесіп жатқандай болу, қуыршақты немесе жұмсақ ойыншықты тамақтандырғандай болу)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 20,
+        "fields": {
+            "action_time": "2025-03-06T07:46:04.511Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "7",
+            "object_repr": "Сіздің балаңыз заттарға өрмелеуді ұната ма? (Мысалы: жиһазға, ойын алаңындағы құрылымдарға, баспалдақтарға)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 21,
+        "fields": {
+            "action_time": "2025-03-06T07:46:16.391Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "8",
+            "object_repr": "Сіздің балаңыз көзінің алдында саусақтарымен ерекше қимылдар жасай ма? (Мысалы: балаңыз саусақтарын көзінің жанында жылжыта ма?)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 22,
+        "fields": {
+            "action_time": "2025-03-06T07:46:25.182Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "9",
+            "object_repr": "Сіздің балаңыз бір нәрсені сұрау немесе көмек алу үшін саусағымен көрсетеді ме? (Мысалы: жетуге қолы жетпейтін тәтті немесе ойыншыққа саусағымен көрсету)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 23,
+        "fields": {
+            "action_time": "2025-03-06T07:48:12.440Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "10",
+            "object_repr": "Сіздің балаңыз қызықты нәрсеге назар аударту үшін саусағымен көрсетеді ме? (Мысалы: аспандағы ұшаққа немесе жолдағы үлкен жүк көлігіне саусағымен көрсету)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 24,
+        "fields": {
+            "action_time": "2025-03-06T07:48:19.707Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "11",
+            "object_repr": "Сіздің балаңыз басқа балаларға қызығушылық таныта ма? (Мысалы: басқа балаларды бақылау, оларға күлу, оларға бару)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 25,
+        "fields": {
+            "action_time": "2025-03-06T07:48:25.785Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "12",
+            "object_repr": "Сіздің балаңыз сізге заттарды көрсету үшін оларды әкеліп, сіздің жаныңызда ұстайды ма, жай ғана бөлісу үшін, көмек сұрамай ма? (Мысалы: сізге гүл, жұмсақ ойыншық немесе ойыншық жүк көлігін көрсету)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 26,
+        "fields": {
+            "action_time": "2025-03-06T07:48:32.073Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "13",
+            "object_repr": "Сіз балаңызды атымен шақырғанда, ол жауап бере ме? (Мысалы: бала сізге қарап, дыбыс шығарып немесе былдырлап, сіздің шақыруыңызға назар аудара ма?)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 27,
+        "fields": {
+            "action_time": "2025-03-06T07:48:41.463Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "14",
+            "object_repr": "Сіз балаңызға күлімсіресеңіз, ол сізге жауап ретінде күлімсірей ме?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 28,
+        "fields": {
+            "action_time": "2025-03-06T07:48:47.533Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "15",
+            "object_repr": "Сіздің балаңыз тұрмыстық дыбыстардан қорқа ма? (Мысалы: балаңыз шаңсорғыштың немесе қатты музыканың дыбысына айқайлап немесе жылап жауап бере ме?)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 29,
+        "fields": {
+            "action_time": "2025-03-06T07:48:53.522Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "16",
+            "object_repr": "Сіздің балаңыз жүре ала ма?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 30,
+        "fields": {
+            "action_time": "2025-03-06T07:49:01.013Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "17",
+            "object_repr": "Сіз балаңызбен сөйлескенде, онымен ойнағанда немесе оны киіндіргенде, ол сізге тікелей қарай ма?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 31,
+        "fields": {
+            "action_time": "2025-03-06T07:49:07.128Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "18",
+            "object_repr": "Сіздің балаңыз сіздің әрекеттеріңізді қайталауға тырыса ма? (Мысалы: қоштасу кезінде қол бұлғау, шапалақтау, сізге жауап ретінде күлкілі дыбыстар шығару)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 32,
+        "fields": {
+            "action_time": "2025-03-06T07:49:17.936Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "19",
+            "object_repr": "Егер сіз артыңызға бұрылып қарасаңыз, сіздің балаңыз да сіз қарап тұрған нәрсені көру үшін айналаға қарайды ма?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 33,
+        "fields": {
+            "action_time": "2025-03-06T07:49:25.568Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "20",
+            "object_repr": "Сіздің балаңыз сіздің назарыңызды өзіне аударуға тырыса ма? (Мысалы: бала сізге қарап, мақтау күтеді, «қара», «маған қара» деп айтады)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 34,
+        "fields": {
+            "action_time": "2025-03-06T07:49:33.163Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "21",
+            "object_repr": "Сіздің балаңыз сіз оған нұсқаусыз бір нәрсе жасауды айтқанда түсіне ала ма? (Мысалы: «кітапты орындыққа қой» немесе «маған көрпені алып кел» дегенді қолмен көрсетпей түсіне ме?)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 35,
+        "fields": {
+            "action_time": "2025-03-06T07:49:37.904Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "22",
+            "object_repr": "Егер бірдеңе ерекше болып жатса, балаңыз сіздің бет-әлпетіңізге қарап, сіздің реакцияңызды түсінуге тырыса ма? (Мысалы: балаңыз ерекше немесе күлкілі дыбысты естісе немесе жаңа ойыншықты көрсе, сіздің",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 36,
+        "fields": {
+            "action_time": "2025-03-06T07:49:53.187Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "23",
+            "object_repr": "Сіздің балаңыз қозғалыс белсенділігін ұната ма? (Мысалы: айналып жүру немесе тізеде секіру)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 37,
+        "fields": {
+            "action_time": "2025-03-06T11:04:06.142Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "4",
+            "object_repr": "Егер сіз бөлменің екінші шетінде тұрған бір нәрсені көрсетсеңіз, сіздің балаңыз соған қарай ма? (Мысалы: егер сіз ойыншықты немесе жануарды көрсетсеңіз, балаңыз сол ойыншыққа немесе жануарға қарай ма?",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 38,
+        "fields": {
+            "action_time": "2025-03-06T11:04:17.087Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "5",
+            "object_repr": "Сіз балаңыздың саңырау болуы мүмкін деп ойлап көрдіңіз бе?",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 39,
+        "fields": {
+            "action_time": "2025-03-06T11:04:20.989Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "6",
+            "object_repr": "Сіздің балаңыз қиял-ғажайып немесе рөлдік ойындар ойнай ма? (Мысалы: бос кеседен ішіп жатқандай болу, телефонмен сөйлесіп жатқандай болу, қуыршақты немесе жұмсақ ойыншықты тамақтандырғандай болу)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 40,
+        "fields": {
+            "action_time": "2025-03-06T11:04:28.317Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "7",
+            "object_repr": "Сіздің балаңыз заттарға өрмелеуді ұната ма? (Мысалы: жиһазға, ойын алаңындағы құрылымдарға, баспалдақтарға)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 41,
+        "fields": {
+            "action_time": "2025-03-06T11:04:33.184Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "8",
+            "object_repr": "Сіздің балаңыз көзінің алдында саусақтарымен ерекше қимылдар жасай ма? (Мысалы: балаңыз саусақтарын көзінің жанында жылжыта ма?)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 42,
+        "fields": {
+            "action_time": "2025-03-06T11:04:38.895Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "9",
+            "object_repr": "Сіздің балаңыз бір нәрсені сұрау немесе көмек алу үшін саусағымен көрсетеді ме? (Мысалы: жетуге қолы жетпейтін тәтті немесе ойыншыққа саусағымен көрсету)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 43,
+        "fields": {
+            "action_time": "2025-03-06T11:04:44.631Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "10",
+            "object_repr": "Сіздің балаңыз қызықты нәрсеге назар аударту үшін саусағымен көрсетеді ме? (Мысалы: аспандағы ұшаққа немесе жолдағы үлкен жүк көлігіне саусағымен көрсету)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 44,
+        "fields": {
+            "action_time": "2025-03-06T11:04:55.694Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "11",
+            "object_repr": "Сіздің балаңыз басқа балаларға қызығушылық таныта ма? (Мысалы: басқа балаларды бақылау, оларға күлу, оларға бару)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 45,
+        "fields": {
+            "action_time": "2025-03-06T11:05:01.634Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "12",
+            "object_repr": "Сіздің балаңыз сізге заттарды көрсету үшін оларды әкеліп, сіздің жаныңызда ұстайды ма, жай ғана бөлісу үшін, көмек сұрамай ма? (Мысалы: сізге гүл, жұмсақ ойыншық немесе ойыншық жүк көлігін көрсету)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 46,
+        "fields": {
+            "action_time": "2025-03-06T11:05:09.349Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "13",
+            "object_repr": "Сіз балаңызды атымен шақырғанда, ол жауап бере ме? (Мысалы: бала сізге қарап, дыбыс шығарып немесе былдырлап, сіздің шақыруыңызға назар аудара ма?)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 47,
+        "fields": {
+            "action_time": "2025-03-06T11:05:17.831Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "14",
+            "object_repr": "Сіз балаңызға күлімсіресеңіз, ол сізге жауап ретінде күлімсірей ме?",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 48,
+        "fields": {
+            "action_time": "2025-03-06T11:05:25.864Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "15",
+            "object_repr": "Сіздің балаңыз тұрмыстық дыбыстардан қорқа ма? (Мысалы: балаңыз шаңсорғыштың немесе қатты музыканың дыбысына айқайлап немесе жылап жауап бере ме?)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 49,
+        "fields": {
+            "action_time": "2025-03-06T11:05:34.430Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "16",
+            "object_repr": "Сіздің балаңыз жүре ала ма?",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 50,
+        "fields": {
+            "action_time": "2025-03-06T11:05:37.764Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "14",
+            "object_repr": "Сіз балаңызға күлімсіресеңіз, ол сізге жауап ретінде күлімсірей ме?",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 51,
+        "fields": {
+            "action_time": "2025-03-06T11:05:40.991Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "15",
+            "object_repr": "Сіздің балаңыз тұрмыстық дыбыстардан қорқа ма? (Мысалы: балаңыз шаңсорғыштың немесе қатты музыканың дыбысына айқайлап немесе жылап жауап бере ме?)",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 52,
+        "fields": {
+            "action_time": "2025-03-06T11:05:45.050Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "16",
+            "object_repr": "Сіздің балаңыз жүре ала ма?",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 53,
+        "fields": {
+            "action_time": "2025-03-06T11:05:47.875Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "17",
+            "object_repr": "Сіз балаңызбен сөйлескенде, онымен ойнағанда немесе оны киіндіргенде, ол сізге тікелей қарай ма?",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 54,
+        "fields": {
+            "action_time": "2025-03-06T11:05:51.572Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "18",
+            "object_repr": "Сіздің балаңыз сіздің әрекеттеріңізді қайталауға тырыса ма? (Мысалы: қоштасу кезінде қол бұлғау, шапалақтау, сізге жауап ретінде күлкілі дыбыстар шығару)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 55,
+        "fields": {
+            "action_time": "2025-03-06T11:05:56.029Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "18",
+            "object_repr": "Сіздің балаңыз сіздің әрекеттеріңізді қайталауға тырыса ма? (Мысалы: қоштасу кезінде қол бұлғау, шапалақтау, сізге жауап ретінде күлкілі дыбыстар шығару)",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 56,
+        "fields": {
+            "action_time": "2025-03-06T11:06:00.478Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "19",
+            "object_repr": "Егер сіз артыңызға бұрылып қарасаңыз, сіздің балаңыз да сіз қарап тұрған нәрсені көру үшін айналаға қарайды ма?",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 57,
+        "fields": {
+            "action_time": "2025-03-06T11:06:05.267Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "20",
+            "object_repr": "Сіздің балаңыз сіздің назарыңызды өзіне аударуға тырыса ма? (Мысалы: бала сізге қарап, мақтау күтеді, «қара», «маған қара» деп айтады)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 58,
+        "fields": {
+            "action_time": "2025-03-06T11:06:11.546Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "21",
+            "object_repr": "Сіздің балаңыз сіз оған нұсқаусыз бір нәрсе жасауды айтқанда түсіне ала ма? (Мысалы: «кітапты орындыққа қой» немесе «маған көрпені алып кел» дегенді қолмен көрсетпей түсіне ме?)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 59,
+        "fields": {
+            "action_time": "2025-03-06T11:06:14.604Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "22",
+            "object_repr": "Егер бірдеңе ерекше болып жатса, балаңыз сіздің бет-әлпетіңізге қарап, сіздің реакцияңызды түсінуге тырыса ма? (Мысалы: балаңыз ерекше немесе күлкілі дыбысты естісе немесе жаңа ойыншықты көрсе, сіздің",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 60,
+        "fields": {
+            "action_time": "2025-03-06T11:06:18.783Z",
+            "user": [
+                "900101123456"
+            ],
+            "content_type": [
+                "results",
+                "mchatquestions"
+            ],
+            "object_id": "23",
+            "object_repr": "Сіздің балаңыз қозғалыс белсенділігін ұната ма? (Мысалы: айналып жүру немесе тізеде секіру)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Number\"]}}]"
+        }
+    }
+]

@@ -1,0 +1,68 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+{% endblock %}
+
+{% block content %}
+
+<main class="registration-container">
+    <div class="form-wrapper">
+        <h2 class="form-title">Тіркелу</h2>
+        <form method="POST" action="{% url 'users:register' %}" autocomplete="off">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="form-errors">
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li><strong>{{ field }}</strong>: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="form-grid">
+                <div class="form-group">
+                    {{ form.iin }}
+                </div>
+                <div class="form-group">
+                    {{ form.gender }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.father_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.role }}
+                </div>
+
+            </div>
+
+            <div class="form-grid password-row">
+                <div class="form-group">
+                    {{ form.password1 }}
+                </div>
+                <div class="form-group">
+                    {{ form.password2 }}
+                </div>
+            </div>
+
+            <button type="submit" name="action" value="registerBD" class="submit-btn">Тіркеу</button>
+
+            <div class="form-links">
+                <a href="{% url 'index' %}">Басты бет</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock %}
+

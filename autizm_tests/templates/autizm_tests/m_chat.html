@@ -1,0 +1,118 @@
+{% extends 'core/base.html' %}
+
+{% load static%}
+
+{% block title %}
+   {{ title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/binary.css'%}">
+{% endblock %}
+
+{% block content %}
+
+<div id="binary-question-container">
+    <div class="progress-container">
+        <progress id="progress-bar" value="0" max="20"></progress>
+        <span id="progress-text">0 / 20</span>
+    </div>
+    <div id="binary-question">
+    </div>
+    <div class="binary-button-container">
+        <button id="yes-btn">Иә</button>
+        <button id="no-btn">Жоқ</button>
+    </div>
+</div>
+
+<script>
+    const questions = JSON.parse('{{ questions_json|escapejs }}');
+    const riskQuestions = [2, 5, 12];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answers = [];
+
+    const questionContainer = document.getElementById('binary-question-container');
+    const questionEl = document.getElementById('binary-question');
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    function showQuestion(index) {
+        questionEl.innerHTML = `<span class="question-number">Сұрақ ${index + 1}:</span><br>${questions[index]}`;
+        updateProgress();
+    }
+
+    yesBtn.addEventListener('click', () => {
+        answers.push({ question: currentQuestionIndex + 1, answer: "Иә" });
+        if (riskQuestions.includes(currentQuestionIndex + 1)) {
+            score++;
+        }
+        nextQuestion();
+    });
+
+    noBtn.addEventListener('click', () => {
+        answers.push({ question: currentQuestionIndex + 1, answer: "Жоқ" });
+        if (!riskQuestions.includes(currentQuestionIndex + 1)) {
+            score++;
+        }
+        nextQuestion();
+    });
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            showQuestion(currentQuestionIndex);
+        } else {
+            showResult();
+        }
+    }
+    
+    function updateProgress() {
+        progressBar.value = currentQuestionIndex+1;
+        progressText.textContent = `${currentQuestionIndex+1} / ${questions.length}`;
+    }
+    
+    function showResult() {
+        let riskLevel = "";
+        if (score <= 2) {
+            riskLevel = "ТӨМЕН ҚАУІП: Егер бала 24 айдан кіші болса, 2 жасқа толған кезде қайта тестілеу ұсынылады";
+        } else if (score <= 7) {
+            riskLevel = "ОРТАША ҚАУІП: Нәтижені нақтылау үшін қосымша кезеңдік сұхбатты қолдану ұсынылады. Егер MCHAT-R/F кезеңінің нәтижесі 2 немесе одан жоғары болса, диагностикадан өтіп, ерте араласу шараларын қабылдаңыз";
+        } else {
+            riskLevel = "ЖОҒАРЫ ҚАУІП: Дереу диагностикадан өтіп, ерте араласу шараларын қабылдаңыз";
+        }
+
+        sendResults(score, answers, riskLevel);
+    }
+
+    function sendResults(score, answers, riskLevel) {
+        fetch('{% url "autizm_tests:submit_mchat" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                score: score,
+                answers: answers,
+                riskLevel: riskLevel
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Ответ сервера:', data);
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+    }
+
+    showQuestion(currentQuestionIndex);
+</script>
+
+{% endblock %}

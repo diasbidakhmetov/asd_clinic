@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% load static%}
+
+{% block title %}
+   {{ title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/test_guide.css'%}">
+{% endblock %}
+
+{% block content %}
+
+<div class = "test-guide-container">
+  <div class = "warn">
+    <h3>Ескерту</h3>
+    <p>Тест нәтижелері маманның түсіндіруін қажет етеді.</p>
+    <p>Өздігінен диагноз қою үшін Онлайн тестті қолдану мүмкін емес!</p>
+    <p>Кез келген күмән туындаған жағдайда білікті мамандарға хабарласыңыз.</p>
+  </div>
+  <br>
+  <div class = "test_guide">
+    <h3>Нұсқаулық</h3>
+    {% for g in guide%}
+      <p>{{g.name}}</p>
+    {% endfor %}
+  </div>
+  <button><a href ="{% url 'autizm_tests:tests' code_name%}"> Бастау </a></button>
+</div>
+{% endblock %}

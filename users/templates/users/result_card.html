@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+
+{% load static%}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if user_id %}
+                <div class="profile-title">
+            <p>{% if form.last_name %}{{form.last_name}}{% endif %}
+                {% if form.first_name %}{{form.first_name}}{% endif %}
+                {% if form.father_name %}{{form.father_name}}{% endif %}
+            </p>
+        </div>
+    {% else %}
+        <div class="profile-title">
+            <p>Жеке кабинет</p>
+        </div>
+    {% endif %}
+
+    
+    <div class="profile-content">
+        {% include 'users/base_profile.html'%}
+        <div class="result-card-content">
+        {% if tests %}
+            <table border="1" class = "test-result-table">
+                <tr>
+                    <th>№</th>
+                    <th>Тест түрі</th>
+                    <th>Өту күні</th>
+                    <th>Баланың жасы</th>
+                    <th>Балл</th>
+                    <th>Нәтижесі</th>
+                </tr>
+                {% for test in tests %}
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        {% if test %}
+                            <td>
+                                <a href = "{% url 'results:test_results' test.result_id.test_type.code_name  test.result_id.id%}">
+                                    {{test.result_id.test_type}}
+                                </a>
+                            </td>
+                            <td>{{test.result_id.date_taken|date:"d.m.Y H:i:s"}}</td>
+                            <td>{% if test.result_id.age %}{{test.result_id.age}}{% endif %}</td>
+                            <td>{{test.score}}</td>
+                            {% if test.result_id.test_type.code_name == "m_chat"%}
+                                <td>{{test.risk_level}}</td>
+                            {% else %}
+                                <td>{{test.description}}</td>
+                            {% endif %}
+                        {% else %}
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+        {% else %}
+            <p> Деректер табылмады </p>
+        {% endif %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
