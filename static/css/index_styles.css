@@ -1,26 +1,864 @@
-.eye-tracking-container {
-    max-width: 100%;
-    height: 450px;
-    padding: 20px;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+/* Главная страница — мягкий вариант с аккуратными скруглениями */
 
-    background-image: url("/static/images/bg_image.webp");
-    background-size: 100% 100%; /* Фон растягивается по контейнеру */
-    background-position: center;
-    background-repeat: no-repeat;
+:root {
+    --home-ink: #1d302b;
+    --home-muted: #64736f;
+    --home-line: #dce5e1;
+    --home-soft: #f4f7f5;
+    --home-accent: #2f6b5d;
+    --home-accent-dark: #245448;
+    --home-white: #ffffff;
+    --home-shadow: 0 14px 40px rgba(35, 67, 59, .08);
 }
 
-.eye-btn{
-    background:#2c3e50;
-    color: #ffffff;
-    padding: 8px 12px;
-    border-radius: 5px;
+.home-page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 42px 34px 76px;
+    color: var(--home-ink);
+}
+
+.home-page *,
+.home-page *::before,
+.home-page *::after {
+    box-sizing: border-box;
+}
+
+/* Главная новость */
+
+.tracking-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(350px, .92fr);
+    gap: 28px;
+    padding: 28px;
+    min-height: 540px;
+    background: #fff;
+    border: 1px solid var(--home-line);
+    border-radius: 28px;
+    box-shadow: var(--home-shadow);
+}
+
+.tracking-feature__content {
+    padding: 40px 30px 38px 18px;
+    align-self: center;
+}
+
+.tracking-feature__label,
+.section-kicker {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 13px;
+    margin-bottom: 20px;
+    border-radius: 999px;
+    background: #eaf2ef;
+    color: var(--home-accent);
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.tracking-feature h1 {
+    max-width: 700px;
+    margin: 0;
+    font-size: clamp(42px, 4.6vw, 66px);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    font-weight: 650;
+}
+
+.tracking-feature__lead {
+    max-width: 670px;
+    margin: 28px 0 0;
+    color: #344943;
+    font-size: 19px;
+    line-height: 1.55;
+}
+
+.tracking-feature__text {
+    max-width: 650px;
+    margin: 17px 0 0;
+    color: var(--home-muted);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.tracking-feature__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.tracking-feature__actions form {
+    margin: 0;
+}
+
+.primary-action,
+.secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 23px;
+    border-radius: 12px;
     text-decoration: none;
-    border: 1px solid #000000;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
 }
 
-.eye-btn:hover{
-    background: #52677e;
+.primary-action {
+    border: 1px solid var(--home-accent);
+    background: var(--home-accent);
+    color: #fff;
+    box-shadow: 0 7px 18px rgba(47, 107, 93, .18);
+}
+
+.primary-action:hover {
+    transform: translateY(-1px);
+    background: var(--home-accent-dark);
+    border-color: var(--home-accent-dark);
+    color: #fff;
+}
+
+.secondary-action {
+    border: 1px solid #c9d5d1;
+    background: #fff;
+    color: var(--home-ink);
+}
+
+.secondary-action:hover {
+    transform: translateY(-1px);
+    background: var(--home-soft);
+}
+
+.tracking-feature__note {
+    margin: 18px 0 0;
+    color: #7a8884;
+    font-size: 12px;
+}
+
+/* Визуальный блок справа */
+
+.tracking-feature__visual {
+    display: flex;
+    align-items: stretch;
+}
+
+.visual-frame {
+    width: 100%;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #d4dfdb;
+    border-radius: 22px;
+    background: #e9efec;
+}
+
+.visual-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 21px;
+    border-bottom: 1px solid #d2ddda;
+    background: rgba(255,255,255,.28);
+    color: #536761;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+}
+
+.visual-scene {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, transparent 49.8%, rgba(58,83,76,.10) 50%, transparent 50.2%),
+        linear-gradient(0deg, transparent 49.8%, rgba(58,83,76,.10) 50%, transparent 50.2%),
+        linear-gradient(135deg, #dce7e2 0%, #f0f3ef 58%, #e4ded3 100%);
+}
+
+.visual-scene::before,
+.visual-scene::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(49,95,85,.22);
+    border-radius: 16px;
+    background: rgba(255,255,255,.08);
+}
+
+.visual-scene::before {
+    width: 43%;
+    height: 54%;
+    left: 11%;
+    top: 15%;
+}
+
+.visual-scene::after {
+    width: 29%;
+    height: 35%;
+    right: 10%;
+    bottom: 13%;
+}
+
+.focus-point {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--home-accent);
+    border-radius: 50%;
+    background: rgba(255,255,255,.75);
+    box-shadow: 0 0 0 5px rgba(47,107,93,.08);
+}
+
+.focus-point::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    left: 4px;
+    top: 4px;
+    border-radius: 50%;
+    background: var(--home-accent);
+}
+
+.focus-point--one { left: 29%; top: 35%; }
+.focus-point--two { left: 48%; top: 53%; }
+.focus-point--three { right: 22%; top: 30%; }
+
+.visual-caption {
+    position: absolute;
+    left: 22px;
+    bottom: 22px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(35,67,59,.07);
+}
+
+.visual-caption strong,
+.visual-caption span {
+    display: block;
+}
+
+.visual-caption strong {
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.visual-caption span {
+    color: #62716d;
+    font-size: 11px;
+}
+
+/* Секции */
+
+.home-intro,
+.tests-section,
+.process-section {
+    margin-top: 30px;
+    padding: 62px 54px;
+    border: 1px solid var(--home-line);
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 9px 30px rgba(35,67,59,.045);
+}
+
+.section-heading {
+    max-width: 760px;
+    margin-bottom: 38px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: clamp(29px, 3.3vw, 43px);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+}
+
+.section-heading--row {
+    max-width: none;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.section-heading--row > p {
+    width: min(420px, 40%);
+    margin: 0 0 3px;
+    color: var(--home-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.intro-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 1000px;
+}
+
+.intro-layout p {
+    margin: 0;
+    color: #53635e;
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+/* Тесты */
+
+.tests-list {
+    display: grid;
+    gap: 12px;
+}
+
+.test-row {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    padding: 23px 25px;
+    border: 1px solid #e1e8e5;
+    border-radius: 16px;
+    background: #fbfcfb;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.test-row:hover {
+    transform: translateY(-2px);
+    border-color: #c7d8d2;
+    box-shadow: 0 8px 22px rgba(35,67,59,.06);
+}
+
+.test-row__number {
+    color: #8b9894;
+    font-size: 12px;
+    letter-spacing: .08em;
+}
+
+.test-row__content h3 {
+    margin: 0 0 7px;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.test-row__content p {
+    max-width: 690px;
+    margin: 0;
+    color: var(--home-muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.test-row__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+    padding: 11px 15px;
+    border-radius: 10px;
+    background: #eef4f1;
+    color: var(--home-accent);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.test-row__link:hover {
+    background: #e2eeea;
+    color: var(--home-accent-dark);
+}
+
+.test-row__link span {
+    font-size: 18px;
+}
+
+.empty-tests {
+    padding: 25px;
+    border-radius: 14px;
+    background: var(--home-soft);
+    color: var(--home-muted);
+}
+
+/* Процесс */
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.process-item {
+    min-height: 220px;
+    padding: 26px;
+    border: 1px solid #e0e8e4;
+    border-radius: 16px;
+    background: var(--home-soft);
+}
+
+.process-item__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-bottom: 40px;
+    border-radius: 50%;
+    background: #e2ece8;
+    color: var(--home-accent);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.process-item h3 {
+    margin: 0 0 11px;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.process-item p {
+    margin: 0;
+    color: var(--home-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Предупреждение */
+
+.medical-note {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 36px;
+    margin-top: 30px;
+    padding: 27px 32px;
+    border: 1px solid #ddd8cc;
+    border-radius: 16px;
+    background: #f8f5ef;
+}
+
+.medical-note strong {
+    font-size: 14px;
+}
+
+.medical-note p {
+    max-width: 750px;
+    margin: 0;
+    color: #665f56;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Адаптив */
+
+@media (max-width: 980px) {
+    .home-page {
+        padding: 28px 24px 60px;
+    }
+
+    .tracking-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .tracking-feature__content {
+        padding: 28px 18px 15px;
+    }
+
+    .visual-frame {
+        min-height: 350px;
+    }
+
+    .section-heading--row {
+        display: block;
+    }
+
+    .section-heading--row > p {
+        width: auto;
+        max-width: 620px;
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 720px) {
+    .home-page {
+        padding: 18px 14px 45px;
+    }
+
+    .tracking-feature {
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .tracking-feature h1 {
+        font-size: 38px;
+    }
+
+    .tracking-feature__lead {
+        font-size: 17px;
+    }
+
+    .home-intro,
+    .tests-section,
+    .process-section {
+        padding: 38px 22px;
+        border-radius: 18px;
+    }
+
+    .intro-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .test-row {
+        grid-template-columns: 38px 1fr;
+        gap: 10px;
+        padding: 19px;
+    }
+
+    .test-row__link {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-item {
+        min-height: 0;
+    }
+
+    .process-item__number {
+        margin-bottom: 22px;
+    }
+
+    .medical-note {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        padding: 23px;
+    }
+}
+
+
+/* =========================================================
+   CONTINUOUS PAGE LAYOUT
+   Блоки без промежутков и без скругления внешних секций.
+   Скругление кнопок и небольших элементов сохранено.
+   ========================================================= */
+
+.home-page {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--home-white);
+}
+
+/* Основные секции идут вплотную друг к другу */
+.tracking-feature,
+.home-intro,
+.tests-section,
+.process-section {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: 0;
+    border-right: 0;
+}
+
+/* Первый блок также растягивается по ширине страницы */
+.tracking-feature {
+    padding: 54px max(34px, calc((100vw - 1380px) / 2));
+    border-top: 0;
+    border-bottom: 1px solid var(--home-line);
+}
+
+/* Контент остальных секций сохраняет удобные внутренние поля,
+   но сами секции больше не выглядят отдельными карточками */
+.home-intro,
+.tests-section,
+.process-section {
+    padding: 72px max(54px, calc((100vw - 1320px) / 2));
+    border-top: 0;
+    border-bottom: 1px solid var(--home-line);
+}
+
+/* Убираем округление именно у большого визуального блока */
+.visual-frame {
+    border-radius: 0;
+}
+
+/* Внутренние строки тестов больше не выглядят отдельными карточками */
+.tests-list {
+    gap: 0;
+    border-top: 1px solid var(--home-line);
+}
+
+.test-row {
+    border: 0;
+    border-bottom: 1px solid var(--home-line);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.test-row:hover {
+    transform: none;
+    border-color: var(--home-line);
+    box-shadow: none;
+    background: var(--home-soft);
+}
+
+/* Три шага — единый блок без карточек */
+.process-grid {
+    gap: 0;
+    border-top: 1px solid var(--home-line);
+    border-bottom: 1px solid var(--home-line);
+}
+
+.process-item {
+    border: 0;
+    border-right: 1px solid var(--home-line);
+    border-radius: 0;
+    background: transparent;
+}
+
+.process-item:last-child {
+    border-right: 0;
+}
+
+/* Информационное предупреждение тоже без внешней "карточки" */
+.medical-note {
+    width: 100%;
+    margin: 0;
+    padding: 32px max(54px, calc((100vw - 1320px) / 2));
+    border: 0;
+    border-bottom: 1px solid #ddd8cc;
+    border-radius: 0;
+    background: #f8f5ef;
+}
+
+/* Кнопки и маленькие элементы намеренно остаются округлёнными */
+
+@media (max-width: 980px) {
+    .tracking-feature {
+        padding: 34px 24px;
+    }
+
+    .home-intro,
+    .tests-section,
+    .process-section,
+    .medical-note {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+@media (max-width: 720px) {
+    .home-page {
+        padding: 0;
+    }
+
+    .tracking-feature {
+        padding: 24px 16px;
+        border-radius: 0;
+    }
+
+    .home-intro,
+    .tests-section,
+    .process-section {
+        padding: 48px 18px;
+        border-radius: 0;
+    }
+
+    .visual-frame {
+        border-radius: 0;
+    }
+
+    .test-row {
+        border-radius: 0;
+    }
+
+    .process-item {
+        border-radius: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--home-line);
+    }
+
+    .process-item:last-child {
+        border-bottom: 0;
+    }
+
+    .medical-note {
+        padding: 26px 18px;
+        border-radius: 0;
+    }
+}
+
+
+/* =========================================================
+   FINAL HOME PAGE FIX
+   base.html оборачивает контент в .wrapper.
+   На главной убираем его внешние отступы, не меняя base.html.
+   Цветовая схема возвращена к фирменному #2c3e50.
+   ========================================================= */
+
+:root {
+    --home-ink: #2c3e50;
+    --home-muted: #687888;
+    --home-line: #dde3e8;
+    --home-soft: #f5f7f9;
+    --home-accent: #2c3e50;
+    --home-accent-dark: #1f2d3a;
+    --home-white: #ffffff;
+}
+
+/* .wrapper находится в core/base.html вокруг block content */
+body:has(.home-page) .wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* На случай, если базовый CSS задаёт фон/минимальные поля body */
+body:has(.home-page) {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff;
+}
+
+/* Главная начинается сразу после header */
+.home-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero от края до края */
+.tracking-feature {
+    width: 100%;
+    margin: 0;
+    padding: 64px max(7vw, 42px);
+    border: 0;
+    border-bottom: 1px solid var(--home-line);
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+}
+
+/* Остальные большие секции также без боковых внешних зазоров */
+.home-intro,
+.tests-section,
+.process-section {
+    width: 100%;
+    margin: 0;
+    padding: 72px max(7vw, 42px);
+    border: 0;
+    border-bottom: 1px solid var(--home-line);
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+}
+
+/* Фирменный тёмно-синий вместо зелёного */
+.tracking-feature__label,
+.section-kicker {
+    color: #2c3e50;
+    background: #edf1f5;
+}
+
+.tracking-feature h1,
+.section-heading h2,
+.test-row__content h3,
+.process-item h3 {
+    color: #2c3e50;
+}
+
+.primary-action {
+    background: #2c3e50;
+    border-color: #2c3e50;
+    box-shadow: 0 7px 18px rgba(44, 62, 80, .16);
+}
+
+.primary-action:hover {
+    background: #1f2d3a;
+    border-color: #1f2d3a;
+}
+
+.secondary-action {
+    color: #2c3e50;
+    border-color: #cbd3da;
+}
+
+.test-row__link {
+    color: #2c3e50;
+    background: #eef2f5;
+}
+
+.test-row__link:hover {
+    color: #1f2d3a;
+    background: #e4e9ed;
+}
+
+.process-item__number {
+    color: #2c3e50;
+    background: #e8edf1;
+}
+
+.focus-point {
+    border-color: #2c3e50;
+    box-shadow: 0 0 0 5px rgba(44, 62, 80, .08);
+}
+
+.focus-point::after {
+    background: #2c3e50;
+}
+
+/* Правая визуализация без внешнего округления блока */
+.visual-frame {
+    border-radius: 0;
+    border-color: #d5dde3;
+    background: #edf1f3;
+}
+
+.visual-scene::before,
+.visual-scene::after {
+    border-color: rgba(44, 62, 80, .20);
+}
+
+/* Кнопки остаются округлёнными */
+.primary-action,
+.secondary-action,
+.test-row__link {
+    border-radius: 12px;
+}
+
+@media (max-width: 720px) {
+    .tracking-feature,
+    .home-intro,
+    .tests-section,
+    .process-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}
+
+
+
+.header {
+    border-bottom: 1px solid #d9e0e6;
+    box-shadow: 0 3px 10px rgba(44, 62, 80, 0.05);
+    position: relative;
+    z-index: 10;
 }

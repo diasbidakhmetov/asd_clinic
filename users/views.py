@@ -6,6 +6,12 @@ from users.forms import UserLoginForm, UserRegisterForm
 from django.shortcuts import render, HttpResponseRedirect
 from results.models import Atec,Cars,EyeResults,MChat,SCQ,User,Casd
 from scripts.get_iin import format_date,calculate_age
+from users.forms import (
+    UserLoginForm,
+    UserRegisterForm,
+    StaffUserRegisterForm,
+)
+
 
 def login(request):
     if request.method == 'POST':
@@ -39,12 +45,13 @@ def register(request):
 
 def staff_register(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
+        form = StaffUserRegisterForm(request.POST)
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('index'))
     else:
-        form = UserRegisterForm()
+        form = StaffUserRegisterForm()
 
     context = {'form': form}
     return render(request, 'users/staff_register.html', context)

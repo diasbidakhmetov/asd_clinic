@@ -1,37 +1,172 @@
 {% extends 'core/base.html' %}
-
 {% load static %}
 
 {% block title %}
-{{ title }}
+    {{ title }}
 {% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'css/index_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index_styles.css' %}">
 {% endblock %}
 
 {% block content %}
+<main class="home-page">
 
-<div class="eye-tracking-container">
-  <h1>Eye Tracking жүйесі</h1>
-  <p>Аутизм белгілері бар адамдарда көз қозғалысын талдау үшін қолданылатын<br/>
-    технология. Бұл визуалды қабылдау, зейін және әлеуметтік бағдарлау <br/>
-    ерекшеліктерін анықтауға көмектеседі,
-    бұл ерте диагностикаға 
-    <br/>және оқыту мен терапиядағы жеке көзқарасқа ықпал етеді.</p>
+    <!-- Главный анонс / новость -->
+    <section class="tracking-feature">
+        <div class="tracking-feature__content">
+            <span class="tracking-feature__label">Жаңа мүмкіндік</span>
 
-  <form action="{% url 'autizm_tests:test_guide' code_name %}" method="POST">   
-    {% csrf_token %}
-    <button type="submit" name="action" value="start" class="eye-btn">Тестті бастау</button>
-  </form>
-  <form action="{% url 'autizm_tests:train_model' %}" method="POST">   
-    {% csrf_token %}
-    <p>Көзді бақылау жүйесін тексеру</p>
-    <button type="submit" name="action" value="train" class="eye-btn">Оқыту</button>
-  </form>
-    
-</div>
+            <h1>Eye Tracking — визуалды зейінді талдаудың жаңа тәсілі</h1>
 
-<br>
+            <p class="tracking-feature__lead">
+                Баланың экрандағы әлеуметтік және бейтарап аймақтарға назар аудару
+                ерекшеліктерін бақылауға арналған қосымша бағалау құралы.
+            </p>
 
+            <p class="tracking-feature__text">
+                Eye Tracking көзқарас бағыты туралы деректерді жинап, визуалды назардың
+                ерекшеліктерін талдауға көмектеседі. Нәтижелер басқа скринингтік
+                тесттермен және маманның бағалауымен бірге қарастырылуы тиіс.
+            </p>
+
+            <div class="tracking-feature__actions">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'autizm_tests:test_guide' code_name %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="primary-action">Eye Tracking бастау</button>
+                    </form>
+
+                    <form action="{% url 'autizm_tests:train_model' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="secondary-action">Калибрлеу</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="primary-action">Жүйеге кіру</a>
+                {% endif %}
+            </div>
+
+            <p class="tracking-feature__note">
+                Бұл құрал өздігінен медициналық диагноз қоюға арналмаған.
+            </p>
+        </div>
+
+        <div class="tracking-feature__visual" aria-hidden="true">
+            <div class="visual-frame">
+                <div class="visual-topline">
+                    <span>Visual attention</span>
+                    <span>Eye Tracking</span>
+                </div>
+                <div class="visual-scene">
+                    <span class="focus-point focus-point--one"></span>
+                    <span class="focus-point focus-point--two"></span>
+                    <span class="focus-point focus-point--three"></span>
+                    <div class="visual-caption">
+                        <strong>Назар аймақтары</strong>
+                        <span>Әлеуметтік және бейтарап объектілер</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Коротко о платформе -->
+    <section class="home-intro">
+        <div class="section-heading">
+            <span class="section-kicker">Платформа туралы</span>
+            <h2>Баланың даму ерекшеліктерін бағалауға арналған құралдар</h2>
+        </div>
+
+        <div class="intro-layout">
+            <p>
+                Платформада бірнеше скринингтік және бағалау тесттері бір жерде
+                жинақталған. Тест нәтижелерін жеке кабинеттен қарап, алдыңғы
+                нәтижелермен салыстыруға болады.
+            </p>
+
+            <p>
+                Әр әдіс баланың мінез-құлқы мен даму ерекшеліктерінің белгілі бір
+                қырын бағалайды. Нәтижелерді қорытынды медициналық диагноз ретінде
+                емес, маманмен әрі қарай талқылауға арналған ақпарат ретінде
+                қарастырған дұрыс.
+            </p>
+        </div>
+    </section>
+
+    <!-- Доступные тесты -->
+    <section class="tests-section" id="tests">
+        <div class="section-heading section-heading--row">
+            <div>
+                <span class="section-kicker">Бағалау құралдары</span>
+                <h2>Қолжетімді тесттер</h2>
+            </div>
+            <p>Қажетті әдістемені таңдап, нұсқаулықпен танысқаннан кейін тестті бастаңыз.</p>
+        </div>
+
+        <div class="tests-list">
+            {% for category in categories %}
+                <article class="test-row">
+                    <div class="test-row__number">
+                        {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                    </div>
+
+                    <div class="test-row__content">
+                        <h3>{{ category.name }}</h3>
+                        <p>
+                            Бағалау әдістемесі. Тестті бастамас бұрын нұсқаулықпен
+                            және ескертулермен танысыңыз.
+                        </p>
+                    </div>
+
+                    <a class="test-row__link"
+                       href="{% url 'autizm_tests:test_guide' category.code_name %}">
+                        Тестке өту
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </article>
+            {% empty %}
+                <div class="empty-tests">
+                    Қазіргі уақытта қолжетімді тесттер тізімі бос.
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Как пользоваться -->
+    <section class="process-section">
+        <div class="section-heading">
+            <span class="section-kicker">Қалай жұмыс істейді</span>
+            <h2>Бағалау процесі</h2>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-item">
+                <span class="process-item__number">01</span>
+                <h3>Әдісті таңдаңыз</h3>
+                <p>Қолжетімді тесттердің бірін немесе Eye Tracking құралын таңдаңыз.</p>
+            </div>
+
+            <div class="process-item">
+                <span class="process-item__number">02</span>
+                <h3>Бағалаудан өтіңіз</h3>
+                <p>Нұсқаулықты орындап, сұрақтарға жауап беріңіз немесе бақылауды бастаңыз.</p>
+            </div>
+
+            <div class="process-item">
+                <span class="process-item__number">03</span>
+                <h3>Нәтижені қараңыз</h3>
+                <p>Нәтижелер жеке кабинетте сақталып, кейін қайта қарауға қолжетімді болады.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="medical-note">
+        <strong>Маңызды ақпарат</strong>
+        <p>
+            Онлайн бағалау нәтижелері маманның қорытындысын алмастырмайды.
+            Баланың дамуына қатысты сұрақтар туындаса, білікті маманға жүгініңіз.
+        </p>
+    </section>
+
+</main>
 {% endblock %}

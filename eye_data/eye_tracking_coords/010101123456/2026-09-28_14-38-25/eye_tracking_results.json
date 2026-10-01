@@ -1,0 +1,22 @@
+{
+    "/static/images/test_images/test_image_1.jpeg": {
+        "interest_zone": 38,
+        "neutral_zone": 174
+    },
+    "/static/images/test_images/test_image_2.jpeg": {
+        "interest_zone": 58,
+        "neutral_zone": 93
+    },
+    "/static/images/test_images/test_image_3.jpeg": {
+        "interest_zone": 47,
+        "neutral_zone": 71
+    },
+    "/static/images/test_images/test_image_4.jpeg": {
+        "interest_zone": 65,
+        "neutral_zone": 48
+    },
+    "/static/images/test_images/test_image_5.jpeg": {
+        "interest_zone": 32,
+        "neutral_zone": 51
+    }
+}

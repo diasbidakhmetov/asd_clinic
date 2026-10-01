@@ -9,7 +9,9 @@
 <main class="registration-container">
     <div class="form-wrapper">
         <h2 class="form-title">Тіркелу</h2>
-        <form method="POST" action="{% url 'users:register' %}" autocomplete="off">
+        <form method="POST"
+      action="{% url 'users:staff_register' %}"
+      autocomplete="off">
             {% csrf_token %}
 
             {% if form.errors %}

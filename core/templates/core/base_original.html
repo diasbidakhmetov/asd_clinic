@@ -1,0 +1,89 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href=" {% static 'css/base_style.css'%} ">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header class="header">
+  <div class="logo-container">
+        <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt='logo'></a>
+        <p>ASD CLINIC</p>
+  </div>
+
+  <nav class="nav">
+    <ul>
+      <li><a href="/">Басты бет</a></li>
+      <li  class="nav-item"><a href="#">Біз туралы</a>
+        <div class="dropdown-nav">
+          <a href="/">Мақсат</a>
+          <a href="/">Команда</a>
+          <a href="/">Құндылықтар</a>
+        </div>
+      </li>
+      
+      <li class="nav-item"> <a href="#">Тесттер</a>
+        <div class="dropdown-nav">
+            {% for type in categories%}
+              <a href="{% url 'autizm_tests:test_guide' type.code_name %}">{{ type.name }}</a>
+            {% endfor %}
+        </div>
+      </li>
+      <li><a href="#">Байланыс</a></li>
+    </ul>
+  </nav>
+
+  <div class="profile-header-container">
+    {% if user.is_authenticated %}
+      <div class="profile-header">
+          <img src="{% static 'images/user.png' %}" alt="Профиль"> 
+          <h2> {% if user.last_name %} {{ user.last_name}} {% endif %}   
+              {% if user.first_name %} {{user.first_name}}  {% endif %}
+              {% if user.father_name %} {{user.father_name}} {% endif %}
+          </h2>
+      </div>
+
+      <div class="dropdown-menu">
+        <a href="{% url 'users:profile' %}">Жеке кабинет</a>
+        {% if user.is_superuser or user.is_staff or user.role.name == "Әкімші"%}
+          <a href="{% url 'users:staff_register' %}">Қызметкерді тіркеу</a>
+        {% endif %}
+        {% if user.is_superuser or user.is_staff or user.role.name == "Әкімші"%}
+          <a href="{% url 'admin:index' %}">Админ панель</a>
+        {% endif %}
+        {% if user.role.name == "Аналитик" %}
+          <a href="{% url 'analytics:general_analysis' %}">Аналитика</a>
+        {% endif %}
+        <a href="{% url 'users:logout' %}">Шығу</a>
+      </div>
+    {% else %}
+      <div class="profile-header" style="background-color: white;">
+        <a href="{% url 'users:login' %}" class="btn">Кіру</a>
+        <a href="{% url 'users:register' %}" class="btn">Тіркелу</a>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="wrapper">
+    {% block content%}{%endblock%}
+</div>
+
+<footer class="base-footer">
+  <div class="copyright">
+    <p>Copyright © 2025 ASD CLINIC</p>
+    <ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms & Conditions</a></li>
+      <li><a href="#">Refund Policy</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>
