@@ -1,16 +1,15 @@
-{% load static%}
-
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eye Tracking</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/eye.css'%}">
+    <link rel="stylesheet" href="{% static 'css/eye.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
     <script src="{% static 'js/WebGazer-master/www/webgazer.js' %}"></script>
-    <script src="{% static 'js/webgazer_script.js'%}"></script>
+    <script src="{% static 'js/webgazer_script.js' %}"></script>
 </head>
 <body>
     <script>
@@ -33,22 +32,109 @@
         });
     </script>
 
-    <div class = "test-guide-container" id = "test-guide-container">
-        <div class = "warn">
-            <h3>Ескерту</h3>
-            <p>Тест нәтижелері маманның түсіндіруін қажет етеді.</p>
-            <p>Өздігінен диагноз қою үшін Онлайн тестті қолдану мүмкін емес!</p>
-            <p>Кез келген күмән туындаған жағдайда білікті мамандарға хабарласыңыз.</p>
-        </div>
-        <div class = "test_guide">
-            <h3>Нұсқаулық</h3>
-            {% for g in guide%}
-            <p>{{g.name}}</p>
-            {% endfor %}
-        </div>
-            <button id ="startTest"> Бастау </a></button>
-        </div>
+    <main class="test-guide-container guide-page" id="test-guide-container">
+
+        <!-- Hero -->
+        <section class="guide-hero">
+            <div class="guide-hero__text">
+                <span class="section-kicker">Eye Tracking</span>
+                <h1>Визуалды зейінді талдау</h1>
+                <p class="guide-hero__lead">
+                    Тест барысында экрандағы суреттерге қарау бағыты тіркеледі.
+                    Бастамас бұрын нұсқаулықпен танысыңыз.
+                </p>
+                <div class="guide-badges">
+                    <span class="guide-badge">Веб-камера қажет</span>
+                    <span class="guide-badge">Толық экран режимі</span>
+                    <span class="guide-badge">Диагноз қоймайды</span>
+                </div>
+            </div>
+
+            <div class="guide-hero__visual" aria-hidden="true">
+                <div class="guide-hero__circle guide-hero__circle--big"></div>
+                <div class="guide-hero__circle guide-hero__circle--small"></div>
+                <div class="guide-hero__card">
+                    <span>Құрал</span>
+                    <strong>Eye Tracking</strong>
+                </div>
+            </div>
+        </section>
+
+        <div class="guide-layout">
+
+            <div class="guide-main">
+            <section class="camera-check">
+    <div class="section-heading">
+        <span class="section-kicker">Алдын ала тексеру</span>
+        <h2>Камера</h2>
     </div>
+    <div class="camera-check__box" id="cameraSlot">
+        <p class="camera-check__hint">Камера қосылуда…</p>
+    </div>
+    <p class="camera-check__caption">
+        Басыңызды    кадрдың ортасында көрінетінін тексеріңіз.
+    </p>
+</section>
+                <div class="section-heading">   
+                    <span class="section-kicker">Қалай өту керек</span>
+                    <h2>Нұсқаулық</h2>
+                </div>
+
+                <div class="guide-list test_guide">
+                    {% for g in guide %}
+                        <article class="guide-item">
+                            <span class="guide-item__number">
+                                {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                            </span>
+                            <p>{{ g.name }}</p>
+                        </article>
+                    {% empty %}
+                        <div class="guide-empty">Нұсқаулық әзірге қосылмаған.</div>
+                    {% endfor %}
+                </div>
+
+                <section class="medical-note warn">
+                    <div class="medical-note__icon" aria-hidden="true">!</div>
+                    <div>
+                        <strong>Ескерту</strong>
+                        <p>Тест нәтижелері маманның түсіндіруін қажет етеді.</p>
+                        <p>Өздігінен диагноз қою үшін онлайн тестті қолдану мүмкін емес!</p>
+                        <p>Кез келген күмән туындаған жағдайда білікті мамандарға хабарласыңыз.</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="guide-aside">
+                <div class="start-card">
+                    <span class="section-kicker">Дайындық</span>
+                    <h3>Тестті бастау</h3>
+                    <p>Төмендегі кеңестерді орындап, дайын болғанда батырманы басыңыз.</p>
+
+                    <button id="startTest" type="button" class="primary-action">
+                        Бастау <span aria-hidden="true">→</span>
+                    </button>
+                    <a href="{% url 'index' %}" class="secondary-action">Басты бетке</a>
+
+                    <ol class="start-card__steps">
+                        <li>
+                            <span>01</span>
+                            <div><strong>Камераға рұқсат беріңіз</strong><p>Браузер сұраған кезде рұқсат беріңіз.</p></div>
+                        </li>
+                        <li>
+                            <span>02</span>
+                            <div><strong>Жарық жеткілікті болсын</strong><p>Бет жақсы жарықтандырылуы керек.</p></div>
+                        </li>
+                        <li>
+                            <span>03</span>
+                            <div><strong>Экранға қараңыз</strong><p>Тест кезінде басты қозғалтпауға тырысыңыз.</p></div>
+                        </li>
+                    </ol>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
     <img id="imageDisplay" src="">
     <audio id="audioPlayer" name="media" autoplay preload="auto"></audio>
 

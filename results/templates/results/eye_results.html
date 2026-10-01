@@ -1,9 +1,9 @@
 {% extends 'core/base.html' %}
-
 {% load static %}
+{% load l10n %}
 
 {% block title %}
-    {{title}}
+    {{ title }}
 {% endblock %}
 
 {% block head %}
@@ -11,54 +11,97 @@
 {% endblock %}
 
 {% block content %}
-    <div class = "result-continer">
-        <div class = "result-head-info">
-            <table border="1" class = "head-table">
-                <tr>
-                    <td class = "category">Аты-Жөні</td>
-                    <td>{{user.last_name}} {{user.first_name}} {% if user.father_name %}{{user.father_name}}{% endif %}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Жасы</td>
-                    <td>{{results.age}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Тест түрі</td>
-                    <td>{{results.test_type}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Тест нәтижесі</td>
-                    <td>{{eye.0.description}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Өту күні</td>
-                    <td>{{results.date_taken|date:"d.m.Y H:i:s"}}</td>
-                </tr>
-            </table>
+<main class="results-page">
+
+    <!-- Hero -->
+    <section class="results-hero">
+        <div class="results-hero__text">
+            <span class="section-kicker">Тест нәтижесі</span>
+            <h1>{{ results.test_type }}</h1>
+            <p class="results-hero__lead">
+                {{ user.last_name }} {{ user.first_name }}{% if user.father_name %} {{ user.father_name }}{% endif %}
+                · {{ results.date_taken|date:"d.m.Y H:i" }}
+            </p>
         </div>
 
-        <div class = "test-result-table-continer">   
-            <table border="1" class = "test-result-table">
-                <tr>
-                    <th class = "text-center">№</th>
-                    <th class = "text-center">Кескін</th>
-                    <th class = "text-center">Қызықты аймақтар</th>
-                    <th class = "text-center">Нейтралды аймақтар</th>
-                </tr>
-                {% for result, count in  combined_queryset  %}
-                    <tr>
-                        <td class = "text-center">{{ forloop.counter }}</td>
-                        <td class = "text-center"><img src="{{result.result_image.url}}" alt="{{ result.result_image }}" width="250"></td>
-                        <td class = "text-center">{% if count %}{{ count.social }}{% else %}-{% endif %}</td>
-                        <td class = "text-center">{% if count %}{{ count.neitral }}{% else %}-{% endif %}</td>
-                    </tr> 
-                {% endfor %}             
-            </table>
+        <div class="results-hero__summary">
+            <span class="section-kicker">Қорытынды</span>
+            <p>{{ eye.0.description }}</p>
+        </div>
+    </section>
+
+    <div class="results-layout">
+
+        <!-- Основная часть -->
+        <div class="results-main">
+            <div class="section-heading">
+                <span class="section-kicker">Толық талдау</span>
+                <h2>Кескіндер бойынша нәтиже</h2>
+            </div>
+
+            <div class="images-legend">
+                <span><i class="dot dot--social"></i> Қызықты аймақтар</span>
+                <span><i class="dot dot--neutral"></i> Нейтралды аймақтар</span>
+            </div>
+
+            <div class="images-grid">
+                {% for result, count in combined_queryset %}
+                    <article class="image-card">
+                        <div class="image-card__img">
+                            <img src="{{ result.result_image.url }}" alt="{{ result.result_image }}">
+                            <span class="image-card__badge">
+                                {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                            </span>
+                        </div>
+
+                        <div class="image-card__body">
+                            <div class="stat">
+                                <span>Қызықты аймақтар</span>
+                                <strong>{% if count %}{{ count.social }}{% else %}-{% endif %}</strong>
+                            </div>
+                            <div class="stat">
+                                <span>Нейтралды аймақтар</span>
+                                <strong>{% if count %}{{ count.neitral }}{% else %}-{% endif %}</strong>
+                            </div>
+
+                            {% if count %}
+                                <div class="ratio-bar" aria-hidden="true">
+                                    <div class="ratio-bar__social" style="flex: {{ count.social|unlocalize }}"></div>
+                                    <div class="ratio-bar__neutral" style="flex: {{ count.neitral|unlocalize }}"></div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% empty %}
+                    <div class="results-empty">Нәтижелер табылмады.</div>
+                {% endfor %}
+            </div>
         </div>
 
-        <div class="back-result-continer">
-            <a href="{% url 'users:all_results' %}">Артқа</a>
-        </div>
+        <!-- Боковая панель -->
+        <aside class="results-aside">
+            <div class="info-panel">
+                <h3>Мәліметтер</h3>
+                <dl>
+                    <div><dt>Аты-жөні</dt><dd>{{ user.last_name }} {{ user.first_name }}{% if user.father_name %} {{ user.father_name }}{% endif %}</dd></div>
+                    <div><dt>Жасы</dt><dd>{{ results.age }}</dd></div>
+                    <div><dt>Тест түрі</dt><dd>{{ results.test_type }}</dd></div>
+                    <div><dt>Өту күні</dt><dd>{{ results.date_taken|date:"d.m.Y H:i:s" }}</dd></div>
+                </dl>
+            </div>
+
+            <section class="medical-note">
+                <div class="medical-note__icon" aria-hidden="true">!</div>
+                <div>
+                    <strong>Маңызды ақпарат</strong>
+                    <p>Онлайн бағалау нәтижелері маманның қорытындысын алмастырмайды.</p>
+                    <p>Нәтижелерді білікті мамандармен талқылаңыз.</p>
+                </div>
+            </section>
+
+            <a href="{% url 'users:all_results' %}" class="secondary-action">← Артқа</a>
+        </aside>
+
     </div>
+</main>
 {% endblock %}
-    

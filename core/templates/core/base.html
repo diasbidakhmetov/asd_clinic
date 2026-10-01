@@ -75,13 +75,81 @@
     {% block content%}{%endblock%}
 </div>
 
-<footer class="base-footer">
-  <div class="copyright">
-    <p>Copyright © 2025 ASD CLINIC</p>
-    <ul>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms & Conditions</a></li>
-      <li><a href="#">Refund Policy</a></li>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+
+    <!-- Логотип и описание -->
+    <div class="footer-col footer-about">
+      <a href="{% url 'index' %}" class="footer-logo">
+        <img src="{% static 'images/logo.png' %}" alt="ASD CLINIC">
+        <span>ASD CLINIC</span>
+      </a>
+      <p>
+        Баланың даму ерекшеліктерін алдын ала бағалауға арналған онлайн платформа.
+        Скринингтік тесттер мен нәтижелер бір жерде жинақталған.
+      </p>
+    </div>
+
+    <!-- Навигация -->
+    <div class="footer-col">
+      <h4>Навигация</h4>
+      <ul>
+        <li><a href="{% url 'index' %}">Басты бет</a></li>
+        <li><a href="#">Біз туралы</a></li>
+        <li><a href="#">Байланыс</a></li>
+        <li><a href="#">Жиі қойылатын сұрақтар</a></li>
+      </ul>
+    </div>
+
+    <!-- Тесттер -->
+    <div class="footer-col">
+      <h4>Тесттер</h4>
+      <ul>
+        {% for type in categories %}
+          <li><a href="{% url 'autizm_tests:test_guide' type.code_name %}">{{ type.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Контакты -->
+    <div class="footer-col">
+      <h4>Байланыс</h4>
+      <ul>
+        <!-- ЗАМЕНИТЕ на ваши данные -->
+        <li><a href="#">neurosight@gmail.kz</a></li>
+        <li><a href="#">+7 (000) 000-00-00</a></li>
+        <li>Қазақстан, Өскемен қ., Baqyt Tower</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Предупреждение -->
+  <div class="footer-disclaimer">
+    <strong>Маңызды:</strong>
+    платформа көмекші құрал болып табылады және білікті маманның қорытындысын алмастырмайды.
+    Онлайн тест нәтижелері медициналық диагноз емес. Қандай да бір күмән туындаса, мамандарға жүгініңіз.
+    <span class="footer-disclaimer__sources">
+      Қолданылатын әдістемелер: M-CHAT, SCQ, CARS, ATEC, CASD, Eye Tracking.
+      Әзірлеуші: NeuroSight
+    </span>
+  </div>
+
+  <!-- Нижняя строка -->
+  <div class="footer-bottom">
+    <p>© {% now "Y" %} ASD CLINIC. Барлық құқықтар қорғалған.</p>
+
+    <ul class="footer-legal">
+      <li><a href="#">Құпиялылық саясаты</a></li>
+      <li><a href="#">Пайдаланушы келісімі</a></li>
+      <li><a href="#">Жеке деректерді өңдеу саясаты</a></li>
+    </ul>
+
+    {# Соцсети: раскомментируйте только те, которые реально ведутся #}
+  
+    <ul class="footer-social">
+      <li><a href="#" target="_blank" rel="noopener">Telegram</a></li>
+      <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
     </ul>
   </div>
 </footer>

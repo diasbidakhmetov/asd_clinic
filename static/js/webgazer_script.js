@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     let gazeDataByImage = {};
     let recording = false;
-    let currentImage = ""; 
+    let currentImage = "";
+    // Размер превью камеры (по умолчанию 320x240)
+webgazer.params.videoViewerWidth = 320;
+webgazer.params.videoViewerHeight = 240; 
 
     webgazer.setGazeListener(function(data, elapsedTime) {
         if (data !== null && recording) {
@@ -17,6 +20,33 @@ document.addEventListener("DOMContentLoaded", function () {
     .showVideo(true)
     .showPredictionPoints(true)
     .begin();
+    // Переносим окно камеры в блок на странице
+    const slot = document.getElementById("cameraSlot");
+    let tries = 0;
+    const mover = setInterval(function () {
+        const vc = document.getElementById("webgazerVideoContainer");
+        if (vc && slot) {
+            slot.innerHTML = "";
+            slot.appendChild(vc);
+            clearInterval(mover);
+        } else if (++tries > 75) {   // ~15 секунд
+            clearInterval(mover);
+        }
+    }, 200);
+    startButton.addEventListener("click", function () {
+    // Возвращаем окно камеры в body, чтобы оно не удалилось вместе со страницей
+    const vc = document.getElementById("webgazerVideoContainer");
+    if (vc) document.body.appendChild(vc);
+
+    webgazer.showVideo(false);
+    webgazer.showFaceOverlay(false);
+    webgazer.showFaceFeedbackBox(false);
+    webgazer.showPredictionPoints(false);
+
+    startButton.style.display = "none";
+    container.remove();
+    changeMedia();
+});
 
     const images = [
         "/static/images/test_images/test_image_1.jpeg",

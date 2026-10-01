@@ -1,9 +1,8 @@
 {% extends 'core/base.html' %}
-
 {% load static %}
 
 {% block title %}
-    {{title}}
+    {{ title }}
 {% endblock %}
 
 {% block head %}
@@ -11,57 +10,78 @@
 {% endblock %}
 
 {% block content %}
-    <div class="result-continer">
-        <div class = "result-head-info">
-            <table border="1" class = "head-table">
-                <tr>
-                    <td class = "category">Аты-Жөні</td>
-                    <td>{{user.last_name}} {{user.first_name}} {% if user.father_name %}{{user.father_name}}{% endif %}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Жасы</td>
-                    <td>{{results.age}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Тест түрі</td>
-                    <td>{{results.test_type}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Тест нәтижесі</td>
-                    <td>{{scq.0.description}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Жалпы балл </td>   
-                    <td>{{scq.0.score}}</td>
-                </tr>
-                <tr>
-                    <td class = "category">Өту күні</td>
-                    <td>{{results.date_taken|date:"d.m.Y H:i:s"}}</td>
-                </tr>
-            </table>
+<main class="results-page">
+
+    <section class="results-hero">
+        <div class="results-hero__text">
+            <span class="section-kicker">Тест нәтижесі</span>
+            <h1>{{ results.test_type }}</h1>
+            <p class="results-hero__lead">
+                {{ user.last_name }} {{ user.first_name }}{% if user.father_name %} {{ user.father_name }}{% endif %}
+                · {{ results.date_taken|date:"d.m.Y H:i" }}
+            </p>
         </div>
-        
-        <div class = "test-result-table-continer">   
-            <table border="1" class = "test-result-table">
-                <tr>
-                    <th>№</th>
-                    <th>Сұрақ</th>
-                    <th>Берілген жауап</th>
-                </tr>
+
+        <div class="results-hero__summary">
+            <span class="section-kicker">Қорытынды</span>
+            <p>{{ scq.0.description }}</p>
+        </div>
+    </section>
+
+    <div class="results-layout">
+
+        <div class="results-main">
+            <div class="section-heading">
+                <span class="section-kicker">Толық талдау</span>
+                <h2>Берілген жауаптар</h2>
+            </div>
+
+            <div class="answers-grid">
                 {% for result in scq %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td class = "table-question">{{result.question}}</td>
-                    <td>{{result.answer}}</td>
-                </tr>
+                    <article class="answer-card">
+                        <div class="answer-card__head">
+                            <span class="answer-card__number">
+                                {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                            </span>
+                            <div class="answer-card__tags">
+                                <span class="answer-pill">{{ result.answer }}</span>
+                            </div>
+                        </div>
+                        <p>{{ result.question }}</p>
+                    </article>
+                {% empty %}
+                    <div class="results-empty">Жауаптар табылмады.</div>
                 {% endfor %}
-            </table>
+            </div>
         </div>
-        <div class="back-result-continer">
-            <a href="{% url 'users:all_results' %}">Артқа</a>
-        </div>
-        <p>Тест нәтижесін PDF форматында жүктеп алу үшін төмендегі батырманы басыңыз</p>
-        {% comment %} <a href="{{ url_for('download_pdf') }}" class="btn">PDF жүктеу</a> {% endcomment %}
+
+        <aside class="results-aside">
+            <div class="info-panel">
+                <h3>Мәліметтер</h3>
+                <dl>
+                    <div><dt>Аты-жөні</dt><dd>{{ user.last_name }} {{ user.first_name }}{% if user.father_name %} {{ user.father_name }}{% endif %}</dd></div>
+                    <div><dt>Жасы</dt><dd>{{ results.age }}</dd></div>
+                    <div><dt>Тест түрі</dt><dd>{{ results.test_type }}</dd></div>
+                    <div><dt>Жалпы балл</dt><dd>{{ scq.0.score }}</dd></div>
+                    <div><dt>Өту күні</dt><dd>{{ results.date_taken|date:"d.m.Y H:i:s" }}</dd></div>
+                </dl>
+            </div>
+
+            <section class="medical-note">
+                <div class="medical-note__icon" aria-hidden="true">!</div>
+                <div>
+                    <strong>Маңызды ақпарат</strong>
+                    <p>Онлайн бағалау нәтижелері маманның қорытындысын алмастырмайды.</p>
+                    <p>Нәтижелерді білікті мамандармен талқылаңыз.</p>
+                </div>
+            </section>
+
+            <a href="{% url 'users:all_results' %}" class="secondary-action">← Артқа</a>
+            {% comment %}
+            <a href="{{ url_for('download_pdf') }}" class="primary-action">PDF жүктеу</a>
+            {% endcomment %}
+        </aside>
+
     </div>
+</main>
 {% endblock %}
-    

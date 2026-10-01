@@ -16,6 +16,9 @@ body {
     background: #ffffff;
     color: rgb(0, 0, 0);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    position: relative;   /* добавить */
+    z-index: 1000;        /* добавить: шапка и её меню выше контента */
 }
 
 .logo-container {
@@ -96,6 +99,8 @@ body {
     margin-top: 2px;
     width: 100%; /* Ширина теперь соответствует profile-header */
     box-sizing: border-box; /* Учитываем padding в ширине */
+
+    z-index: 1001;
 }
 
 .dropdown-menu a {
@@ -179,4 +184,160 @@ body {
 
 .nav-item:hover .dropdown-nav {
     display: block;
+}
+
+/* ===== Футер ===== */
+footer.site-footer {
+    margin-top: 60px;
+    padding: 0;
+    background: #2c3e50;
+    color: #d5dde6;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    text-align: left;
+}
+
+.site-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px 30px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+    gap: 40px;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.footer-logo img {
+    height: 40px;
+}
+
+.footer-about p {
+    margin: 0;
+    line-height: 1.7;
+    color: #b8c4d2;
+}
+
+.footer-col h4 {
+    margin: 0 0 16px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.footer-col ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 1.5;
+}
+
+.footer-col a {
+    color: #b8c4d2;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Предупреждение */
+.footer-disclaimer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+    line-height: 1.7;
+    color: #b8c4d2;
+}
+
+.footer-disclaimer strong {
+    color: #ffffff;
+}
+
+.footer-disclaimer__sources {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #8fa0b3;
+}
+
+/* Нижняя строка */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 28px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px 30px;
+    font-size: 14px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #8fa0b3;
+}
+
+.footer-legal,
+.footer-social {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+}
+
+.footer-legal a,
+.footer-social a {
+    color: #b8c4d2;
+    text-decoration: none;
+}
+
+.footer-legal a:hover,
+.footer-social a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .site-footer__inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    .footer-about {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-footer__inner {
+        grid-template-columns: 1fr;
+        padding-top: 36px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
